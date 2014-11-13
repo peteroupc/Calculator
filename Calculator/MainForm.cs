@@ -7,6 +7,7 @@ at: http://upokecenter.com/d/
  */
 using System;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Calculator {
     /// <summary>Description of MainForm.</summary>
@@ -21,9 +22,12 @@ namespace Calculator {
       //
       InitializeComponent();
       state = new CalculatorState();
+      text.Text = state.Text;
     }
     private void Digit(int digit) {
-      state.DigitButton(digit);
+      if (!state.DigitButton(digit)) {
+        SystemSounds.Beep.Play();
+      }
       text.Text = state.Text;
     }
 
@@ -90,6 +94,75 @@ namespace Calculator {
     void Button17Click(object sender, EventArgs e) {
       state.Clear();
       text.Text = state.Text;
+    }
+    void MainFormKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs
+      e) {
+      bool handled = true;
+      switch(e.KeyChar) {
+        case '0':
+          Digit(0);
+          break;
+        case '1':
+          Digit(1);
+          break;
+        case '2':
+          Digit(2);
+          break;
+        case '3':
+          Digit(3);
+          break;
+        case '4':
+          Digit(4);
+          break;
+        case '5':
+          Digit(5);
+          break;
+        case '6':
+          Digit(6);
+          break;
+        case '7':
+          Digit(7);
+          break;
+        case '8':
+          Digit(8);
+          break;
+        case '9':
+          Digit(9);
+          break;
+        case '\b':
+          if (!state.BackButton()) {
+            SystemSounds.Beep.Play();
+          }
+          break;
+        case '\r':
+          state.EqualsButton();
+          break;
+        case '+':
+          state.AddButton();
+          break;
+        case '-':
+          state.SubtractButton();
+          break;
+        case '*':
+          state.MultiplyButton();
+          break;
+        case '/':
+          state.DivideButton();
+          break;
+        case '.':
+          if (!state.DotButton()) {
+            SystemSounds.Beep.Play();
+          }
+          break;
+        default:
+          handled = false;
+          break;
+      }
+        e.Handled|=handled;
+        text.Text = state.Text;
+    }
+    void Button19Click(object sender, System.EventArgs e) {
+      throw new NotImplementedException();
     }
   }
 }

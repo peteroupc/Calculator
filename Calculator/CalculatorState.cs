@@ -10,8 +10,7 @@ using System.Text;
 using PeterO;
 
 namespace Calculator {
-    /// <summary>Description of CalculatorState.</summary>
-  public sealed class CalculatorState
+  internal sealed class CalculatorState
   {
     private enum Operation {
       Nothing,
@@ -21,7 +20,7 @@ namespace Calculator {
       Divide
     }
 
-    private const int MaxDigits = 12;
+    private const int MaxDigits = 18;
 
     ExtendedDecimal operand1;
     ExtendedDecimal operand2;
@@ -46,22 +45,20 @@ namespace Calculator {
       currentOperation = Operation.Nothing;
     }
 
-/// </summary>
-/// <returns></returns>
-public void Clear() {
+    public void Clear() {
       ClearInternal();
     }
 
-/// </summary>
-public string Text {
+    /// <value></value>
+    public string Text {
       get {
         if (buffer.Length > 0) {
           // Buffer is being filled
           return buffer.ToString();
         }
         return (currentOperand == 0) ? ((operand1.IsNaN()) ? "Error" :
-          operand1.ToString()) : ((operand2.IsNaN()) ? "Error" :
-          operand2.ToString());
+                         operand1.ToString()) : ((operand2.IsNaN()) ? "Error" :
+                              operand2.ToString());
       }
     }
 
@@ -75,10 +72,7 @@ public string Text {
       return count;
     }
 
-/// </summary>
-/// <param name="digit"></param>
-/// <returns></returns>
-public void DigitButton(int digit) {
+    public bool DigitButton(int digit) {
       int count = DigitCount();
       if (digit!=0 && buffer.ToString().Equals("0")) {
         // Replace 0 with another digit
@@ -86,20 +80,40 @@ public void DigitButton(int digit) {
       }
       if (digit==0 && buffer.ToString().Equals("0")) {
         // Don't add another 0 if buffer is only 0
-        return;
+        return false;
       }
       if (count<MaxDigits) {
         buffer.Append((char)('0'+digit));
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    public bool DotButton() {
+      if (buffer.Length == 0) {
+        buffer.Append("0.");
+        return true;
+      } else if (!buffer.ToString().Contains(".")) {
+        buffer.Append(".");
+        return true;
+      } else {
+        return false;
       }
     }
 
 /// </summary>
 /// <returns></returns>
-public void DotButton() {
+public bool BackButton() {
       if (buffer.Length == 0) {
-        buffer.Append("0.");
-      } else if (!buffer.ToString().Contains(".")) {
-        buffer.Append(".");
+        buffer.Append("0");
+        return true;
+      } else {
+        if (buffer.ToString().Equals("0")) {
+          return false;
+        }
+        buffer.Remove(buffer.Length-1, 1);
+        return true;
       }
     }
 
@@ -119,9 +133,7 @@ public void DotButton() {
       throw new NotSupportedException();
     }
 
-/// </summary>
-/// <returns></returns>
-public void EqualsButton() {
+    public void EqualsButton() {
       if (currentOperand == 1) {
         if (buffer.Length == 0) {
           // Use previous operand
@@ -160,27 +172,19 @@ public void EqualsButton() {
       }
     }
 
-/// </summary>
-/// <returns></returns>
-public void AddButton() {
+    public void AddButton() {
       OperationButton(Operation.Add);
     }
 
-/// </summary>
-/// <returns></returns>
-public void SubtractButton() {
+    public void SubtractButton() {
       OperationButton(Operation.Subtract);
     }
 
-/// </summary>
-/// <returns></returns>
-public void MultiplyButton() {
+    public void MultiplyButton() {
       OperationButton(Operation.Multiply);
     }
 
-/// </summary>
-/// <returns></returns>
-public void DivideButton() {
+    public void DivideButton() {
       OperationButton(Operation.Divide);
     }
   }
