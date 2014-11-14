@@ -25,6 +25,8 @@ namespace Calculator {
     ExtendedDecimal operand1;
     ExtendedDecimal operand2;
     private readonly StringBuilder buffer;
+    private string text;
+    private bool equalsPressed;
     private static readonly PrecisionContext
       context = PrecisionContext.ForPrecisionAndRounding(MaxDigits, Rounding.Up)
       .WithSimplified(true);
@@ -40,7 +42,8 @@ namespace Calculator {
       operand1 = ExtendedDecimal.Zero;
       operand2 = ExtendedDecimal.Zero;
       buffer.Clear();
-      buffer.Append("0");
+      text="0";
+      equalsPressed=false;
       currentOperand = 0;
       currentOperation = Operation.Nothing;
     }
@@ -52,14 +55,16 @@ namespace Calculator {
     /// <value></value>
     public string Text {
       get {
-        if (buffer.Length > 0) {
-          // Buffer is being filled
-          return buffer.ToString();
-        }
-        return (currentOperand == 0) ? ((operand1.IsNaN()) ? "Error" :
-                         operand1.ToString()) : ((operand2.IsNaN()) ? "Error" :
-                              operand2.ToString());
+        return text;
       }
+    }
+
+    private void SetText(ExtendedDecimal dec){
+      text=(dec.IsNaN()) ? "Error" : dec.ToString();
+    }
+    
+    private bool IsError(string textValue){
+      return textValue.Equals("Error");
     }
 
     private int DigitCount() {
@@ -73,6 +78,7 @@ namespace Calculator {
     }
 
     public bool DigitButton(int digit) {
+      equalsPressed=false;
       int count = DigitCount();
       if (digit!=0 && buffer.ToString().Equals("0")) {
         // Replace 0 with another digit
@@ -80,10 +86,12 @@ namespace Calculator {
       }
       if (digit==0 && buffer.ToString().Equals("0")) {
         // Don't add another 0 if buffer is only 0
+        text=buffer.ToString();
         return false;
       }
       if (count<MaxDigits) {
         buffer.Append((char)('0'+digit));
+        text=buffer.ToString();
         return true;
       } else {
         return false;
@@ -91,28 +99,38 @@ namespace Calculator {
     }
 
     public bool DotButton() {
+      equalsPressed=false;
       if (buffer.Length == 0) {
         buffer.Append("0.");
+        text=buffer.ToString();
         return true;
       } else if (!buffer.ToString().Contains(".")) {
         buffer.Append(".");
+        text=buffer.ToString();
         return true;
       } else {
         return false;
       }
     }
 
-/// </summary>
-/// <returns></returns>
-public bool BackButton() {
+    /// <returns>A Boolean object.</returns>
+    public bool BackButton() {
+      equalsPressed=false;
       if (buffer.Length == 0) {
         buffer.Append("0");
+        text=buffer.ToString();
         return true;
       } else {
         if (buffer.ToString().Equals("0")) {
           return false;
         }
         buffer.Remove(buffer.Length-1, 1);
+        if(buffer.Length==0){
+          // Change to 0 if all the text was
+          // removed
+          buffer.Append("0");
+        }
+        text=buffer.ToString();
         return true;
       }
     }
@@ -133,42 +151,64 @@ public bool BackButton() {
       throw new NotSupportedException();
     }
 
-    public void EqualsButton() {
-      if (currentOperand == 1) {
-        if (buffer.Length == 0) {
-          // Use previous operand
-          operand2 = operand1;
-        } else {
-          operand2 = ExtendedDecimal.FromString(buffer.ToString(), context);
+    public bool EqualsButton() {
+      if(IsError(text)){
+        return false;
+      }
+      if(equalsPressed){
+        if(currentOperation!=Operation.Nothing){
+          // Repeat the previous operation with the
+          // changed operand1 and the same operand2
+          operand1 = DoOperation();
+          SetText(operand1);
+          return true;
         }
+      }
+      if (currentOperand == 1) {
+        operand2 = ExtendedDecimal.FromString(text, context);
         buffer.Clear();
         operand1 = DoOperation();
-        operand2 = operand1;
+        SetText(operand1);
         currentOperand = 0;
-        currentOperation = Operation.Nothing;
+        equalsPressed=true;
       }
+      return true;
+    }
+
+    public bool SquareRootButton() {
+      equalsPressed=false;
+      if(IsError(text)){
+        return false;
+      }
+      ExtendedDecimal op=ExtendedDecimal.FromString(text, context);
+      op=op.SquareRoot(context);
+      if(currentOperand==0){
+        operand1 = op;
+      } else {
+        operand2 = op;
+      }
+      SetText(operand1);
+      buffer.Clear();
+      return true;
     }
 
     private void OperationButton(Operation op) {
+      equalsPressed=false;
       if (currentOperand == 0) {
         // Store first operand
         currentOperand = 1;
-        operand1 = ExtendedDecimal.FromString(buffer.ToString(), context);
+        operand1 = ExtendedDecimal.FromString(text, context);
         operand2 = operand1;
         buffer.Clear();
         currentOperation = op;
       } else {
-        // Already have first operand
-        if (buffer.Length == 0) {
-          // Use previous operand
-          operand2 = operand1;
-        } else {
-          operand2 = ExtendedDecimal.FromString(buffer.ToString(), context);
+        if(buffer.Length==0){
+          currentOperation = op;
+          return;
         }
-        buffer.Clear();
-        operand1 = DoOperation();
-        operand2 = operand1;
-        currentOperation = op;
+        EqualsButton();
+        currentOperand = 0;
+        OperationButton(op);
       }
     }
 

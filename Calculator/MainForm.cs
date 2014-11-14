@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Media;
 
 namespace Calculator {
-    /// <summary>Description of MainForm.</summary>
+  /// <summary>Description of MainForm.</summary>
   public partial class MainForm : Form
   {
     readonly CalculatorState state;
@@ -24,9 +24,15 @@ namespace Calculator {
       state = new CalculatorState();
       text.Text = state.Text;
     }
+    
+    private void Error(){
+        SystemSounds.Beep.Play();
+      
+    }
+    
     private void Digit(int digit) {
       if (!state.DigitButton(digit)) {
-        SystemSounds.Beep.Play();
+        Error();
       }
       text.Text = state.Text;
     }
@@ -88,7 +94,9 @@ namespace Calculator {
       text.Text = state.Text;
     }
     void Button20Click(object sender, EventArgs e) {
-      state.DotButton();
+      if (!state.DotButton()) {
+        Error();
+      }
       text.Text = state.Text;
     }
     void Button17Click(object sender, EventArgs e) {
@@ -96,7 +104,7 @@ namespace Calculator {
       text.Text = state.Text;
     }
     void MainFormKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs
-      e) {
+                          e) {
       bool handled = true;
       switch(e.KeyChar) {
         case '0':
@@ -151,18 +159,22 @@ namespace Calculator {
           break;
         case '.':
           if (!state.DotButton()) {
-            SystemSounds.Beep.Play();
+            Error();
           }
           break;
-        default:
-          handled = false;
+          default: handled = false;
           break;
       }
-        e.Handled|=handled;
-        text.Text = state.Text;
+      e.Handled|=handled;
+      text.Text = state.Text;
     }
     void Button19Click(object sender, System.EventArgs e) {
-      throw new NotImplementedException();
+      if(!state.SquareRootButton()){
+        Error();
+      }
+      text.Text = state.Text;
+    }
+    void Button21Enter(object sender, System.EventArgs e) {
     }
   }
 }
