@@ -314,6 +314,7 @@ namespace Calculator {
       this.button18.TabStop = false;
       this.button18.Text = "CE";
       this.button18.UseVisualStyleBackColor = true;
+      this.button18.Click += new System.EventHandler(this.Button18Click);
       this.button18.Enter += new System.EventHandler(this.Button21Enter);
       this.button18.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       // 

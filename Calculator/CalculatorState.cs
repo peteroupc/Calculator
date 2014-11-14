@@ -52,6 +52,11 @@ namespace Calculator {
       ClearInternal();
     }
 
+    public void ClearEntry() {
+      buffer.Clear();
+      text="0";
+    }
+
     /// <value></value>
     public string Text {
       get {

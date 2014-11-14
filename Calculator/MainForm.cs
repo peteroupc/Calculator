@@ -197,5 +197,9 @@ namespace Calculator {
     }
     void Button21Enter(object sender, System.EventArgs e) {
     }
+		void Button18Click(object sender, System.EventArgs e) {
+      state.ClearEntry();
+      text.Text = state.Text;
+		}
   }
 }
