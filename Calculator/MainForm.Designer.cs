@@ -287,6 +287,7 @@ namespace Calculator {
       this.button15.TabStop = false;
       this.button15.Text = "%";
       this.button15.UseVisualStyleBackColor = true;
+      this.button15.Click += new System.EventHandler(this.button15_Click);
       this.button15.Enter += new System.EventHandler(this.Button21Enter);
       this.button15.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       // 
@@ -394,6 +395,7 @@ namespace Calculator {
       this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.ResumeLayout(false);
       this.PerformLayout();
+
     }
     private System.Windows.Forms.Button button21;
     private System.Windows.Forms.Button button20;

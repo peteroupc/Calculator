@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Media;
 
 namespace Calculator {
-  /// <summary>Description of MainForm.</summary>
+    /// <summary>Description of MainForm.</summary>
   public partial class MainForm : Form
   {
     readonly CalculatorState state;
@@ -24,12 +24,11 @@ namespace Calculator {
       state = new CalculatorState();
       text.Text = state.Text;
     }
-    
-    private void Error(){
+
+    private void Error() {
       SystemSounds.Beep.Play();
-      
     }
-    
+
     private void Digit(int digit) {
       if (!state.DigitButton(digit)) {
         Error();
@@ -68,13 +67,13 @@ namespace Calculator {
       Digit(0);
     }
     void Button4Click(object sender, EventArgs e) {
-      if(!state.AddButton()){
+      if (!state.AddButton()) {
         Error();
       }
       text.Text = state.Text;
     }
     void Button14Click(object sender, EventArgs e) {
-      if(!state.EqualsButton()){
+      if (!state.EqualsButton()) {
         Error();
       }
       text.Text = state.Text;
@@ -83,25 +82,25 @@ namespace Calculator {
       Digit(3);
     }
     void Button21Click(object sender, EventArgs e) {
-      if(!state.PlusMinusButton()){
+      if (!state.PlusMinusButton()) {
         Error();
       }
       text.Text = state.Text;
     }
     void Button8Click(object sender, EventArgs e) {
-      if(!state.SubtractButton()){
+      if (!state.SubtractButton()) {
         Error();
       }
       text.Text = state.Text;
     }
     void Button12Click(object sender, EventArgs e) {
-      if(!state.MultiplyButton()){
+      if (!state.MultiplyButton()) {
         Error();
       }
       text.Text = state.Text;
     }
     void Button16Click(object sender, EventArgs e) {
-      if(!state.DivideButton()){
+      if (!state.DivideButton()) {
         Error();
       }
       text.Text = state.Text;
@@ -190,16 +189,23 @@ namespace Calculator {
       text.Text = state.Text;
     }
     void Button19Click(object sender, System.EventArgs e) {
-      if(!state.SquareRootButton()){
+      if (!state.SquareRootButton()) {
         Error();
       }
       text.Text = state.Text;
     }
     void Button21Enter(object sender, System.EventArgs e) {
     }
-		void Button18Click(object sender, System.EventArgs e) {
+    void Button18Click(object sender, System.EventArgs e) {
       state.ClearEntry();
       text.Text = state.Text;
-		}
+    }
+
+    private void button15_Click(object sender, EventArgs e) {
+      if (!state.PercentButton()) {
+        Error();
+      }
+      text.Text = state.Text;
+    }
   }
 }

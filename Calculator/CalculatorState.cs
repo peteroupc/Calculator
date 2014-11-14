@@ -24,6 +24,7 @@ namespace Calculator {
 
     ExtendedDecimal operand1;
     ExtendedDecimal operand2;
+    private static ExtendedDecimal Percent = ExtendedDecimal.FromString("0.01");
     private readonly StringBuilder buffer;
     private string text;
     private bool equalsPressed;
@@ -43,7 +44,7 @@ namespace Calculator {
       operand2 = ExtendedDecimal.Zero;
       buffer.Clear();
       text="0";
-      equalsPressed=false;
+      equalsPressed = false;
       currentOperand = 0;
       currentOperation = Operation.Nothing;
     }
@@ -64,11 +65,11 @@ namespace Calculator {
       }
     }
 
-    private void SetText(ExtendedDecimal dec){
+    private void SetText(ExtendedDecimal dec) {
       text=(dec.IsNaN()) ? "Error" : dec.ToString();
     }
-    
-    private bool IsError(string textValue){
+
+    private bool IsError(string textValue) {
       return textValue.Equals("Error");
     }
 
@@ -83,8 +84,11 @@ namespace Calculator {
     }
 
     public bool DigitButton(int digit) {
-      equalsPressed=false;
-      if(IsError(text)){
+      if (equalsPressed) {
+        equalsPressed = false;
+        currentOperand = 0;
+      }
+      if (IsError(text)) {
         return false;
       }
       int count = DigitCount();
@@ -94,12 +98,12 @@ namespace Calculator {
       }
       if (digit==0 && buffer.ToString().Equals("0")) {
         // Don't add another 0 if buffer is only 0
-        text=buffer.ToString();
+        text = buffer.ToString();
         return false;
       }
       if (count<MaxDigits) {
         buffer.Append((char)('0'+digit));
-        text=buffer.ToString();
+        text = buffer.ToString();
         return true;
       } else {
         return false;
@@ -107,17 +111,17 @@ namespace Calculator {
     }
 
     public bool DotButton() {
-      equalsPressed=false;
-      if(IsError(text)){
+      equalsPressed = false;
+      if (IsError(text)) {
         return false;
       }
       if (buffer.Length == 0) {
         buffer.Append("0.");
-        text=buffer.ToString();
+        text = buffer.ToString();
         return true;
       } else if (!buffer.ToString().Contains(".")) {
         buffer.Append(".");
-        text=buffer.ToString();
+        text = buffer.ToString();
         return true;
       } else {
         return false;
@@ -125,48 +129,47 @@ namespace Calculator {
     }
 
     public bool PlusMinusButton() {
-      equalsPressed=false;
-      if(IsError(text)){
+      equalsPressed = false;
+      if (IsError(text)) {
         return false;
       }
-      if(buffer.Length==0 && text.Length>0 && !text.Equals("0")){
+      if (buffer.Length==0 && text.Length>0 && !text.Equals("0")) {
         buffer.Append(text);
       }
       if (buffer.Length==0 || buffer.ToString().Equals("0")) {
         // don't negate 0
         return true;
       } else if (buffer[0]=='-') {
-        buffer.Remove(0,1);
-        text=buffer.ToString();
+        buffer.Remove(0, 1);
+        text = buffer.ToString();
         return true;
       } else {
         buffer.Insert(0,"-",1);
-        text=buffer.ToString();
+        text = buffer.ToString();
         return true;
       }
     }
 
-    /// <returns>A Boolean object.</returns>
     public bool BackButton() {
-      equalsPressed=false;
-      if(IsError(text)){
+      equalsPressed = false;
+      if (IsError(text)) {
         return false;
       }
       if (buffer.Length == 0) {
         buffer.Append("0");
-        text=buffer.ToString();
+        text = buffer.ToString();
         return true;
       } else {
         if (buffer.ToString().Equals("0")) {
           return false;
         }
         buffer.Remove(buffer.Length-1, 1);
-        if(buffer.Length==0){
+        if (buffer.Length == 0) {
           // Change to 0 if all the text was
           // removed
           buffer.Append("0");
         }
-        text=buffer.ToString();
+        text = buffer.ToString();
         return true;
       }
     }
@@ -188,11 +191,11 @@ namespace Calculator {
     }
 
     public bool EqualsButton() {
-      if(IsError(text)){
+      if (IsError(text)) {
         return false;
       }
-      if(equalsPressed){
-        if(currentOperation!=Operation.Nothing){
+      if (equalsPressed) {
+        if (currentOperation != Operation.Nothing) {
           // Repeat the previous operation with the
           // changed operand1 and the same operand2
           operand1 = DoOperation();
@@ -206,19 +209,19 @@ namespace Calculator {
         operand1 = DoOperation();
         SetText(operand1);
         currentOperand = 0;
-        equalsPressed=true;
+        equalsPressed = true;
       }
       return true;
     }
 
     public bool SquareRootButton() {
-      equalsPressed=false;
-      if(IsError(text)){
+      equalsPressed = false;
+      if (IsError(text)) {
         return false;
       }
-      ExtendedDecimal op=ExtendedDecimal.FromString(text, context);
-      op=op.SquareRoot(context);
-      if(currentOperand==0){
+      ExtendedDecimal op = ExtendedDecimal.FromString(text, context);
+      op = op.SquareRoot(context);
+      if (currentOperand == 0) {
         operand1 = op;
       } else {
         operand2 = op;
@@ -227,10 +230,27 @@ namespace Calculator {
       buffer.Clear();
       return true;
     }
+    public bool PercentButton() {
+      equalsPressed = false;
+      if (IsError(text)) {
+        return false;
+      }
+      if (currentOperand == 0) {
+        operand1 = ExtendedDecimal.Zero;
+        SetText(operand1);
+        buffer.Clear();
+      } else {
+        operand2 = ExtendedDecimal.FromString(text, context);
+        operand2 = operand2.Multiply(Percent, context);
+        SetText(operand2);
+        buffer.Clear();
+      }
+      return true;
+    }
 
     private bool OperationButton(Operation op) {
-      equalsPressed=false;
-      if(IsError(text)){
+      equalsPressed = false;
+      if (IsError(text)) {
         return false;
       }
       if (currentOperand == 0) {
@@ -242,7 +262,7 @@ namespace Calculator {
         currentOperation = op;
         return true;
       } else {
-        if(buffer.Length==0){
+        if (buffer.Length == 0) {
           currentOperation = op;
           return true;
         }
