@@ -9,20 +9,17 @@ using System;
 using System.Windows.Forms;
 using System.Media;
 
+using PeterO.Calculator;
+
 namespace Calculator {
-    /// <summary>Description of MainForm.</summary>
-  public partial class MainForm : Form
+  internal partial class MainForm : Form
   {
-    readonly CalculatorState state;
+    private readonly CalculatorState state;
 
     public MainForm() {
-      //
-      // The InitializeComponent() call is required for Windows Forms designer
-      // support.
-      //
-      InitializeComponent();
-      state = new CalculatorState();
-      text.Text = state.Text;
+      this.InitializeComponent();
+      this.state = new CalculatorState(18);
+      this.text.Text = this.state.Text;
     }
 
     private void Error() {
@@ -30,182 +27,242 @@ namespace Calculator {
     }
 
     private void Digit(int digit) {
-      if (!state.DigitButton(digit)) {
-        Error();
+      if (!this.state.DigitButton(digit)) {
+        this.Error();
       }
-      text.Text = state.Text;
+      this.text.Text = this.state.Text;
     }
 
-    void MainFormLoad(object sender, EventArgs e) {
-      text.Text = state.Text;
+    internal void MainFormLoad(object sender, EventArgs e) {
+      this.text.Text = this.state.Text;
     }
-    void Button1Click(object sender, EventArgs e) {
-      Digit(1);
+
+    internal void Button1Click(object sender, MouseEventArgs e) {
+      this.Digit(1);
     }
-    void Button2Click(object sender, EventArgs e) {
-      Digit(2);
+
+    internal void Button2Click(object sender, MouseEventArgs e) {
+      this.Digit(2);
     }
-    void Button5Click(object sender, EventArgs e) {
-      Digit(4);
+
+    internal void Button5Click(object sender, MouseEventArgs e) {
+      this.Digit(4);
     }
-    void Button6Click(object sender, EventArgs e) {
-      Digit(5);
+
+    internal void Button6Click(object sender, MouseEventArgs e) {
+      this.Digit(5);
     }
-    void Button7Click(object sender, EventArgs e) {
-      Digit(6);
+
+    internal void Button7Click(object sender, MouseEventArgs e) {
+      this.Digit(6);
     }
-    void Button9Click(object sender, EventArgs e) {
-      Digit(7);
+
+    internal void Button9Click(object sender, MouseEventArgs e) {
+      this.Digit(7);
     }
-    void Button10Click(object sender, EventArgs e) {
-      Digit(8);
+
+    internal void Button10Click(object sender, MouseEventArgs e) {
+      this.Digit(8);
     }
-    void Button11Click(object sender, EventArgs e) {
-      Digit(9);
+
+    internal void Button11Click(object sender, MouseEventArgs e) {
+      this.Digit(9);
     }
-    void Button13Click(object sender, EventArgs e) {
-      Digit(0);
+
+    internal void Button13Click(object sender, MouseEventArgs e) {
+      this.Digit(0);
     }
-    void Button4Click(object sender, EventArgs e) {
-      if (!state.AddButton()) {
-        Error();
+
+    internal void Button4Click(object sender, MouseEventArgs e) {
+      if (!this.state.AddButton()) {
+        this.Error();
       }
-      text.Text = state.Text;
+      this.text.Text = this.state.Text;
     }
-    void Button14Click(object sender, EventArgs e) {
-      if (!state.EqualsButton()) {
-        Error();
+
+    internal void Button14Click(object sender, MouseEventArgs e) {
+      if (!this.state.EqualsButton()) {
+        this.Error();
       }
-      text.Text = state.Text;
+      this.text.Text = this.state.Text;
     }
-    void Button3Click(object sender, EventArgs e) {
-      Digit(3);
+
+    internal void Button3Click(object sender, MouseEventArgs e) {
+      this.Digit(3);
     }
-    void Button21Click(object sender, EventArgs e) {
-      if (!state.PlusMinusButton()) {
-        Error();
+
+    internal void Button21Click(object sender, MouseEventArgs e) {
+      if (!this.state.PlusMinusButton()) {
+        this.Error();
       }
-      text.Text = state.Text;
+      this.text.Text = this.state.Text;
     }
-    void Button8Click(object sender, EventArgs e) {
-      if (!state.SubtractButton()) {
-        Error();
+
+    internal void Button8Click(object sender, MouseEventArgs e) {
+      if (!this.state.SubtractButton()) {
+        this.Error();
       }
-      text.Text = state.Text;
+      this.text.Text = this.state.Text;
     }
-    void Button12Click(object sender, EventArgs e) {
-      if (!state.MultiplyButton()) {
-        Error();
+
+    internal void Button12Click(object sender, MouseEventArgs e) {
+      if (!this.state.MultiplyButton()) {
+        this.Error();
       }
-      text.Text = state.Text;
+      this.text.Text = this.state.Text;
     }
-    void Button16Click(object sender, EventArgs e) {
-      if (!state.DivideButton()) {
-        Error();
+
+    internal void Button16Click(object sender, MouseEventArgs e) {
+      if (!this.state.DivideButton()) {
+        this.Error();
       }
-      text.Text = state.Text;
+      this.text.Text = this.state.Text;
     }
-    void Button20Click(object sender, EventArgs e) {
-      if (!state.DotButton()) {
-        Error();
+
+    internal void Button20Click(object sender, MouseEventArgs e) {
+      if (!this.state.DotButton()) {
+        this.Error();
       }
-      text.Text = state.Text;
+      this.text.Text = this.state.Text;
     }
-    void Button17Click(object sender, EventArgs e) {
-      state.Clear();
-      text.Text = state.Text;
+
+    internal void Button17Click(object sender, MouseEventArgs e) {
+      this.state.Clear();
+      this.text.Text = this.state.Text;
     }
-    void MainFormKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs
-                          e) {
+
+    internal void MainFormKeyPress(
+object sender,
+KeyPressEventArgs e) {
       bool handled = true;
-      switch(e.KeyChar) {
+       switch (e.KeyChar) {
         case '0':
-          Digit(0);
+          this.Digit(0);
           break;
         case '1':
-          Digit(1);
+          this.Digit(1);
           break;
         case '2':
-          Digit(2);
+          this.Digit(2);
           break;
         case '3':
-          Digit(3);
+          this.Digit(3);
           break;
         case '4':
-          Digit(4);
+          this.Digit(4);
           break;
         case '5':
-          Digit(5);
+          this.Digit(5);
           break;
         case '6':
-          Digit(6);
+          this.Digit(6);
           break;
         case '7':
-          Digit(7);
+          this.Digit(7);
           break;
         case '8':
-          Digit(8);
+          this.Digit(8);
           break;
         case '9':
-          Digit(9);
+          this.Digit(9);
           break;
         case '\b':
-          if (!state.BackButton()) {
-            SystemSounds.Beep.Play();
+          if (!this.state.BackButton()) {
+            this.Error();
           }
           break;
         case '\r':
-          state.EqualsButton();
+          if (!this.state.EqualsButton()) {
+            this.Error();
+          }
           break;
         case '+':
-          if (!state.AddButton()) {
-            Error();
+          if (!this.state.AddButton()) {
+            this.Error();
           }
           break;
         case '-':
-          if (!state.SubtractButton()) {
-            Error();
+          if (!this.state.SubtractButton()) {
+            this.Error();
           }
           break;
         case '*':
-          if (!state.MultiplyButton()) {
-            Error();
+          if (!this.state.MultiplyButton()) {
+            this.Error();
           }
           break;
         case '/':
-          if (!state.DivideButton()) {
-            Error();
+          if (!this.state.DivideButton()) {
+            this.Error();
           }
           break;
         case '.':
-          if (!state.DotButton()) {
-            Error();
+          if (!this.state.DotButton()) {
+            this.Error();
           }
           break;
           default: handled = false;
           break;
       }
-      e.Handled|=handled;
-      text.Text = state.Text;
-    }
-    void Button19Click(object sender, System.EventArgs e) {
-      if (!state.SquareRootButton()) {
-        Error();
-      }
-      text.Text = state.Text;
-    }
-    void Button21Enter(object sender, System.EventArgs e) {
-    }
-    void Button18Click(object sender, System.EventArgs e) {
-      state.ClearEntry();
-      text.Text = state.Text;
+      e.Handled |= handled;
+      this.text.Text = this.state.Text;
     }
 
-    private void button15_Click(object sender, EventArgs e) {
-      if (!state.PercentButton()) {
-        Error();
+    internal void Button19Click(object sender, EventArgs e) {
+      if (!this.state.SquareRootButton()) {
+        this.Error();
       }
-      text.Text = state.Text;
+      this.text.Text = this.state.Text;
+    }
+
+    internal void Button18Click(object sender, EventArgs e) {
+      this.state.ClearEntry();
+      this.text.Text = this.state.Text;
+    }
+
+    private void button15_Click(object sender, MouseEventArgs e) {
+      if (!this.state.PercentButton()) {
+        this.Error();
+      }
+      this.text.Text = this.state.Text;
+    }
+
+    private void GeneralKeyDown(object sender, KeyEventArgs e) {
+      if (e.KeyCode == Keys.Enter) {
+        if (!this.state.EqualsButton()) {
+          this.Error();
+        }
+        this.text.Text = this.state.Text;
+        e.SuppressKeyPress = true;
+      }
+      if (e.KeyCode == Keys.Back) {
+        if (!this.state.BackButton()) {
+          this.Error();
+        }
+        this.text.Text = this.state.Text;
+        e.SuppressKeyPress = true;
+      }
+      if (e.KeyCode == Keys.Delete) {
+        this.state.ClearEntry();
+        this.text.Text = this.state.Text;
+        e.SuppressKeyPress = true;
+      }
+      if (e.KeyCode == Keys.Escape) {
+        this.state.Clear();
+        this.text.Text = this.state.Text;
+        e.SuppressKeyPress = true;
+      }
+    }
+
+    private void EnterBehavior(object sender, PreviewKeyDownEventArgs e) {
+      if (e.KeyCode == Keys.Enter) {
+        if (!this.state.EqualsButton()) {
+          this.Error();
+        }
+        this.text.Text = this.state.Text;
+      } else {
+        e.IsInputKey = true;
+      }
     }
   }
 }

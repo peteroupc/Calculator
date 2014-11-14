@@ -9,7 +9,7 @@ using System;
 using System.Text;
 using PeterO;
 
-namespace Calculator {
+namespace PeterO.Calculator {
   internal sealed class CalculatorState
   {
     private enum Operation {
@@ -20,53 +20,56 @@ namespace Calculator {
       Divide
     }
 
-    private const int MaxDigits = 18;
+    private int maxDigits;
 
-    ExtendedDecimal operand1;
-    ExtendedDecimal operand2;
-    private static ExtendedDecimal Percent = ExtendedDecimal.FromString("0.01");
+    private ExtendedDecimal operand1;
+    private ExtendedDecimal operand2;
+    private static readonly ExtendedDecimal Percent =
+      ExtendedDecimal.FromString("0.01");
+
     private readonly StringBuilder buffer;
     private string text;
     private bool equalsPressed;
-    private static readonly PrecisionContext
-      context = PrecisionContext.ForPrecisionAndRounding(MaxDigits, Rounding.Up)
-      .WithSimplified(true);
-    int currentOperand;
-    Operation currentOperation;
+    private readonly PrecisionContext context;
 
-    public CalculatorState() {
-      buffer = new StringBuilder();
-      ClearInternal();
+    private int currentOperand;
+    private Operation currentOperation;
+
+    public CalculatorState(int maxDigits) {
+      this.maxDigits = maxDigits;
+this.context = PrecisionContext.ForPrecisionAndRounding(maxDigits, Rounding.Up)
+        .WithSimplified(true);
+      this.buffer = new StringBuilder();
+      this.ClearInternal();
     }
 
     private void ClearInternal() {
-      operand1 = ExtendedDecimal.Zero;
-      operand2 = ExtendedDecimal.Zero;
-      buffer.Clear();
-      text="0";
-      equalsPressed = false;
-      currentOperand = 0;
-      currentOperation = Operation.Nothing;
+      this.operand1 = ExtendedDecimal.Zero;
+      this.operand2 = ExtendedDecimal.Zero;
+      this.buffer.Clear();
+      this.text = "0";
+      this.equalsPressed = false;
+      this.currentOperand = 0;
+      this.currentOperation = Operation.Nothing;
     }
 
     public void Clear() {
-      ClearInternal();
+      this.ClearInternal();
     }
 
     public void ClearEntry() {
-      buffer.Clear();
-      text="0";
+      this.buffer.Clear();
+      this.text = "0";
     }
 
-    /// <value></value>
     public string Text {
       get {
-        return text;
+        return this.text;
       }
     }
 
     private void SetText(ExtendedDecimal dec) {
-      text=(dec.IsNaN()) ? "Error" : dec.ToString();
+      this.text = dec.IsNaN() ? "Error" : dec.ToString();
     }
 
     private bool IsError(string textValue) {
@@ -75,8 +78,8 @@ namespace Calculator {
 
     private int DigitCount() {
       int count = 0;
-      for (int i = 0;i<buffer.Length; ++i) {
-        if (buffer[i]>= '0' && buffer[0]<= '9') {
+      for (int i = 0; i<this.buffer.Length; ++i) {
+        if (this.buffer[i ]>= '0' && this.buffer[0]<= '9') {
           ++count;
         }
       }
@@ -84,208 +87,207 @@ namespace Calculator {
     }
 
     public bool DigitButton(int digit) {
-      if (equalsPressed) {
-        equalsPressed = false;
-        currentOperand = 0;
+      if (this.equalsPressed) {
+        this.equalsPressed = false;
+        this.currentOperand = 0;
       }
-      if (IsError(text)) {
+      if (this.IsError(this.text)) {
         return false;
       }
-      int count = DigitCount();
-      if (digit!=0 && buffer.ToString().Equals("0")) {
+      int count = this.DigitCount();
+      if (digit != 0 && this.buffer.ToString().Equals("0")) {
         // Replace 0 with another digit
-        buffer.Clear();
+        this.buffer.Clear();
       }
-      if (digit==0 && buffer.ToString().Equals("0")) {
+      if (digit == 0 && this.buffer.ToString().Equals("0")) {
         // Don't add another 0 if buffer is only 0
-        text = buffer.ToString();
+        this.text = this.buffer.ToString();
         return false;
       }
-      if (count<MaxDigits) {
-        buffer.Append((char)('0'+digit));
-        text = buffer.ToString();
+      if (count < this.maxDigits) {
+        this.buffer.Append((char)('0' + digit));
+        this.text = this.buffer.ToString();
         return true;
-      } else {
-        return false;
       }
+      return false;
     }
 
     public bool DotButton() {
-      equalsPressed = false;
-      if (IsError(text)) {
+      this.equalsPressed = false;
+      if (this.IsError(this.text)) {
         return false;
       }
-      if (buffer.Length == 0) {
-        buffer.Append("0.");
-        text = buffer.ToString();
+      if (this.buffer.Length == 0) {
+        this.buffer.Append("0.");
+        this.text = this.buffer.ToString();
         return true;
-      } else if (!buffer.ToString().Contains(".")) {
-        buffer.Append(".");
-        text = buffer.ToString();
-        return true;
-      } else {
-        return false;
       }
+      if (!this.buffer.ToString().Contains(".")) {
+        this.buffer.Append(".");
+        this.text = this.buffer.ToString();
+        return true;
+      }
+      return false;
     }
 
     public bool PlusMinusButton() {
-      equalsPressed = false;
-      if (IsError(text)) {
+      this.equalsPressed = false;
+      if (this.IsError(this.text)) {
         return false;
       }
-      if (buffer.Length==0 && text.Length>0 && !text.Equals("0")) {
-        buffer.Append(text);
+      if (this.buffer.Length == 0 && this.text.Length > 0 &&
+        !this.text.Equals("0")) {
+        this.buffer.Append(this.text);
       }
-      if (buffer.Length==0 || buffer.ToString().Equals("0")) {
+      if (this.buffer.Length == 0 || this.buffer.ToString().Equals("0")) {
         // don't negate 0
         return true;
-      } else if (buffer[0]=='-') {
-        buffer.Remove(0, 1);
-        text = buffer.ToString();
-        return true;
-      } else {
-        buffer.Insert(0,"-",1);
-        text = buffer.ToString();
+      }
+      if (this.buffer[0] == '-') {
+        this.buffer.Remove(0, 1);
+        this.text = this.buffer.ToString();
         return true;
       }
+      this.buffer.Insert(0, "-", 1);
+      this.text = this.buffer.ToString();
+      return true;
     }
 
     public bool BackButton() {
-      equalsPressed = false;
-      if (IsError(text)) {
+      this.equalsPressed = false;
+      if (this.IsError(this.text)) {
         return false;
       }
-      if (buffer.Length == 0) {
-        buffer.Append("0");
-        text = buffer.ToString();
-        return true;
-      } else {
-        if (buffer.ToString().Equals("0")) {
-          return false;
-        }
-        buffer.Remove(buffer.Length-1, 1);
-        if (buffer.Length == 0) {
-          // Change to 0 if all the text was
-          // removed
-          buffer.Append("0");
-        }
-        text = buffer.ToString();
+      if (this.buffer.Length == 0) {
+        this.buffer.Append("0");
+        this.text = this.buffer.ToString();
         return true;
       }
+      if (this.buffer.ToString().Equals("0")) {
+        return false;
+      }
+      this.buffer.Remove(this.buffer.Length - 1, 1);
+      if (this.buffer.Length == 0) {
+        // Change to 0 if all the text was
+        // removed
+        this.buffer.Append("0");
+      }
+      this.text = this.buffer.ToString();
+      return true;
     }
 
     private ExtendedDecimal DoOperation() {
-      if (currentOperation == Operation.Add) {
-        return operand1.Add(operand2, context);
+      if (this.currentOperation == Operation.Add) {
+        return this.operand1.Add(this.operand2, this.context);
       }
-      if (currentOperation == Operation.Subtract) {
-        return operand1.Subtract(operand2, context);
+      if (this.currentOperation == Operation.Subtract) {
+        return this.operand1.Subtract(this.operand2, this.context);
       }
-      if (currentOperation == Operation.Multiply) {
-        return operand1.Multiply(operand2, context);
+      if (this.currentOperation == Operation.Multiply) {
+        return this.operand1.Multiply(this.operand2, this.context);
       }
-      if (currentOperation == Operation.Divide) {
-        return operand1.Divide(operand2, context);
+      if (this.currentOperation == Operation.Divide) {
+        return this.operand1.Divide(this.operand2, this.context);
       }
       throw new NotSupportedException();
     }
 
     public bool EqualsButton() {
-      if (IsError(text)) {
+      if (this.IsError(this.text)) {
         return false;
       }
-      if (equalsPressed) {
-        if (currentOperation != Operation.Nothing) {
+      if (this.equalsPressed) {
+        if (this.currentOperation != Operation.Nothing) {
           // Repeat the previous operation with the
           // changed operand1 and the same operand2
-          operand1 = DoOperation();
-          SetText(operand1);
+          this.operand1 = this.DoOperation();
+          this.SetText(this.operand1);
           return true;
         }
       }
-      if (currentOperand == 1) {
-        operand2 = ExtendedDecimal.FromString(text, context);
-        buffer.Clear();
-        operand1 = DoOperation();
-        SetText(operand1);
-        currentOperand = 0;
-        equalsPressed = true;
+      if (this.currentOperand == 1) {
+        this.operand2 = ExtendedDecimal.FromString(this.text, this.context);
+        this.buffer.Clear();
+        this.operand1 = this.DoOperation();
+        this.SetText(this.operand1);
+        this.currentOperand = 0;
+        this.equalsPressed = true;
       }
       return true;
     }
 
     public bool SquareRootButton() {
-      equalsPressed = false;
-      if (IsError(text)) {
+      this.equalsPressed = false;
+      if (this.IsError(this.text)) {
         return false;
       }
-      ExtendedDecimal op = ExtendedDecimal.FromString(text, context);
-      op = op.SquareRoot(context);
-      if (currentOperand == 0) {
-        operand1 = op;
+      ExtendedDecimal op = ExtendedDecimal.FromString(this.text, this.context);
+      op = op.SquareRoot(this.context);
+      if (this.currentOperand == 0) {
+        this.operand1 = op;
       } else {
-        operand2 = op;
+        this.operand2 = op;
       }
-      SetText(operand1);
-      buffer.Clear();
+      this.SetText(this.operand1);
+      this.buffer.Clear();
       return true;
     }
+
     public bool PercentButton() {
-      equalsPressed = false;
-      if (IsError(text)) {
+      this.equalsPressed = false;
+      if (this.IsError(this.text)) {
         return false;
       }
-      if (currentOperand == 0) {
-        operand1 = ExtendedDecimal.Zero;
-        SetText(operand1);
-        buffer.Clear();
+      if (this.currentOperand == 0) {
+        this.operand1 = ExtendedDecimal.Zero;
+        this.SetText(this.operand1);
+        this.buffer.Clear();
       } else {
-        operand2 = ExtendedDecimal.FromString(text, context);
-        operand2 = operand2.Multiply(Percent, context);
-        SetText(operand2);
-        buffer.Clear();
+        this.operand2 = ExtendedDecimal.FromString(this.text, this.context);
+        this.operand2 = this.operand2.Multiply(Percent, this.context);
+        this.SetText(this.operand2);
+        this.buffer.Clear();
       }
       return true;
     }
 
     private bool OperationButton(Operation op) {
-      equalsPressed = false;
-      if (IsError(text)) {
+      this.equalsPressed = false;
+      if (this.IsError(this.text)) {
         return false;
       }
-      if (currentOperand == 0) {
+      if (this.currentOperand == 0) {
         // Store first operand
-        currentOperand = 1;
-        operand1 = ExtendedDecimal.FromString(text, context);
-        operand2 = operand1;
-        buffer.Clear();
-        currentOperation = op;
+        this.currentOperand = 1;
+        this.operand1 = ExtendedDecimal.FromString(this.text, this.context);
+        this.operand2 = this.operand1;
+        this.buffer.Clear();
+        this.currentOperation = op;
         return true;
-      } else {
-        if (buffer.Length == 0) {
-          currentOperation = op;
-          return true;
-        }
-        EqualsButton();
-        currentOperand = 0;
-        return OperationButton(op);
       }
+      if (this.buffer.Length == 0) {
+        this.currentOperation = op;
+        return true;
+      }
+      this.EqualsButton();
+      this.currentOperand = 0;
+      return this.OperationButton(op);
     }
 
     public bool AddButton() {
-      return OperationButton(Operation.Add);
+      return this.OperationButton(Operation.Add);
     }
 
     public bool SubtractButton() {
-      return OperationButton(Operation.Subtract);
+      return this.OperationButton(Operation.Subtract);
     }
 
     public bool MultiplyButton() {
-      return OperationButton(Operation.Multiply);
+      return this.OperationButton(Operation.Multiply);
     }
 
     public bool DivideButton() {
-      return OperationButton(Operation.Divide);
+      return this.OperationButton(Operation.Divide);
     }
   }
 }
