@@ -6,8 +6,8 @@ If you like this, you should donate to Peter O.
 at: http://upokecenter.com/d/
  */
 using System;
-using System.Windows.Forms;
 using System.Media;
+using System.Windows.Forms;
 
 using PeterO.Calculator;
 

@@ -20,6 +20,9 @@ namespace PeterO.Calculator {
       Divide
     }
 
+    private readonly StringBuilder buffer;
+    private readonly PrecisionContext context;
+
     private int maxDigits;
 
     private ExtendedDecimal operand1;
@@ -27,10 +30,8 @@ namespace PeterO.Calculator {
     private static readonly ExtendedDecimal Percent =
       ExtendedDecimal.FromString("0.01");
 
-    private readonly StringBuilder buffer;
     private string text;
     private bool equalsPressed;
-    private readonly PrecisionContext context;
 
     private int currentOperand;
     private Operation currentOperation;
@@ -78,8 +79,8 @@ this.context = PrecisionContext.ForPrecisionAndRounding(maxDigits, Rounding.Up)
 
     private int DigitCount() {
       int count = 0;
-      for (int i = 0; i<this.buffer.Length; ++i) {
-        if (this.buffer[i ]>= '0' && this.buffer[0]<= '9') {
+      for (int i = 0; i < this.buffer.Length; ++i) {
+        if (this.buffer[i] >= '0' && this.buffer[0] <= '9') {
           ++count;
         }
       }

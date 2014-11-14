@@ -53,16 +53,16 @@ namespace Calculator {
       this.button20 = new System.Windows.Forms.Button();
       this.button21 = new System.Windows.Forms.Button();
       this.SuspendLayout();
-      //
+
       // text
-      //
+
       this.text.BackColor = System.Drawing.SystemColors.ControlLightLight;
       this.text.CausesValidation = false;
       this.text.Font = new System.Drawing.Font(
-"Calibri Light" , 15.75F,
+        "Calibri Light", 15.75F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.text.HideSelection = false;
       this.text.Location = new System.Drawing.Point(12, 12);
       this.text.Name = "text";
@@ -75,14 +75,14 @@ namespace Calculator {
         System.Windows.Forms.KeyEventHandler(this.GeneralKeyDown);
       this.text.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button1
-      //
+
       this.button1.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button1.Location = new System.Drawing.Point(13, 167);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(60, 32);
@@ -98,14 +98,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button1.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button4
-      //
+
       this.button4.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button4.Location = new System.Drawing.Point(210, 91);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(60, 32);
@@ -121,14 +121,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button4.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button2
-      //
+
       this.button2.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button2.Location = new System.Drawing.Point(79, 167);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(60, 32);
@@ -144,14 +144,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button2.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button3
-      //
+
       this.button3.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button3.Location = new System.Drawing.Point(144, 167);
       this.button3.Name = "button3";
       this.button3.Size = new System.Drawing.Size(60, 32);
@@ -167,14 +167,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button3.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button5
-      //
+
       this.button5.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button5.Location = new System.Drawing.Point(13, 129);
       this.button5.Name = "button5";
       this.button5.Size = new System.Drawing.Size(60, 32);
@@ -190,14 +190,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button5.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button6
-      //
+
       this.button6.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button6.Location = new System.Drawing.Point(79, 129);
       this.button6.Name = "button6";
       this.button6.Size = new System.Drawing.Size(60, 32);
@@ -213,14 +213,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button6.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button7
-      //
+
       this.button7.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button7.Location = new System.Drawing.Point(145, 129);
       this.button7.Name = "button7";
       this.button7.Size = new System.Drawing.Size(60, 32);
@@ -236,14 +236,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button7.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button8
-      //
+
       this.button8.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button8.Location = new System.Drawing.Point(210, 129);
       this.button8.Name = "button8";
       this.button8.Size = new System.Drawing.Size(60, 32);
@@ -259,14 +259,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button8.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button9
-      //
+
       this.button9.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button9.Location = new System.Drawing.Point(13, 91);
       this.button9.Name = "button9";
       this.button9.Size = new System.Drawing.Size(60, 32);
@@ -282,14 +282,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button9.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button10
-      //
+
       this.button10.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button10.Location = new System.Drawing.Point(79, 91);
       this.button10.Name = "button10";
       this.button10.Size = new System.Drawing.Size(60, 32);
@@ -305,14 +305,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button10.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button11
-      //
+
       this.button11.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button11.Location = new System.Drawing.Point(144, 91);
       this.button11.Name = "button11";
       this.button11.Size = new System.Drawing.Size(60, 32);
@@ -328,14 +328,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button11.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button12
-      //
+
       this.button12.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button12.Location = new System.Drawing.Point(210, 167);
       this.button12.Name = "button12";
       this.button12.Size = new System.Drawing.Size(60, 32);
@@ -351,14 +351,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button12.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button13
-      //
+
       this.button13.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button13.Location = new System.Drawing.Point(79, 205);
       this.button13.Name = "button13";
       this.button13.Size = new System.Drawing.Size(126, 32);
@@ -374,14 +374,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button13.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button14
-      //
+
       this.button14.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button14.Location = new System.Drawing.Point(79, 243);
       this.button14.Name = "button14";
       this.button14.Size = new System.Drawing.Size(191, 32);
@@ -397,14 +397,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button14.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button16
-      //
+
       this.button16.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button16.Location = new System.Drawing.Point(210, 205);
       this.button16.Name = "button16";
       this.button16.Size = new System.Drawing.Size(60, 32);
@@ -420,14 +420,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button16.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button15
-      //
+
       this.button15.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button15.Location = new System.Drawing.Point(145, 55);
       this.button15.Name = "button15";
       this.button15.Size = new System.Drawing.Size(60, 32);
@@ -443,14 +443,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button15.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button17
-      //
+
       this.button17.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button17.Location = new System.Drawing.Point(13, 55);
       this.button17.Name = "button17";
       this.button17.Size = new System.Drawing.Size(60, 32);
@@ -466,14 +466,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button17.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button18
-      //
+
       this.button18.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button18.Location = new System.Drawing.Point(79, 55);
       this.button18.Name = "button18";
       this.button18.Size = new System.Drawing.Size(60, 32);
@@ -489,14 +489,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button18.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button19
-      //
+
       this.button19.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button19.Location = new System.Drawing.Point(211, 55);
       this.button19.Name = "button19";
       this.button19.Size = new System.Drawing.Size(60, 32);
@@ -512,14 +512,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button19.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button20
-      //
+
       this.button20.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button20.Location = new System.Drawing.Point(13, 205);
       this.button20.Name = "button20";
       this.button20.Size = new System.Drawing.Size(60, 32);
@@ -535,14 +535,14 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button20.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // button21
-      //
+
       this.button21.Font = new System.Drawing.Font(
-"Arial" , 12F,
+        "Arial", 12F,
         System.Drawing.FontStyle.Regular,
- System.Drawing.GraphicsUnit.Point,
-        (byte)(0));
+        System.Drawing.GraphicsUnit.Point,
+        (byte)0);
       this.button21.Location = new System.Drawing.Point(12, 243);
       this.button21.Name = "button21";
       this.button21.Size = new System.Drawing.Size(60, 32);
@@ -558,9 +558,9 @@ namespace Calculator {
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);
       this.button21.PreviewKeyDown += new
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
-      //
+
       // MainForm
-      //
+
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(284, 282);
