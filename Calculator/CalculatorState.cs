@@ -79,6 +79,9 @@ namespace Calculator {
 
     public bool DigitButton(int digit) {
       equalsPressed=false;
+      if(IsError(text)){
+        return false;
+      }
       int count = DigitCount();
       if (digit!=0 && buffer.ToString().Equals("0")) {
         // Replace 0 with another digit
@@ -100,6 +103,9 @@ namespace Calculator {
 
     public bool DotButton() {
       equalsPressed=false;
+      if(IsError(text)){
+        return false;
+      }
       if (buffer.Length == 0) {
         buffer.Append("0.");
         text=buffer.ToString();
@@ -113,9 +119,34 @@ namespace Calculator {
       }
     }
 
+    public bool PlusMinusButton() {
+      equalsPressed=false;
+      if(IsError(text)){
+        return false;
+      }
+      if(buffer.Length==0 && text.Length>0 && !text.Equals("0")){
+        buffer.Append(text);
+      }
+      if (buffer.Length==0 || buffer.ToString().Equals("0")) {
+        // don't negate 0
+        return true;
+      } else if (buffer[0]=='-') {
+        buffer.Remove(0,1);
+        text=buffer.ToString();
+        return true;
+      } else {
+        buffer.Insert(0,"-",1);
+        text=buffer.ToString();
+        return true;
+      }
+    }
+
     /// <returns>A Boolean object.</returns>
     public bool BackButton() {
       equalsPressed=false;
+      if(IsError(text)){
+        return false;
+      }
       if (buffer.Length == 0) {
         buffer.Append("0");
         text=buffer.ToString();
@@ -192,8 +223,11 @@ namespace Calculator {
       return true;
     }
 
-    private void OperationButton(Operation op) {
+    private bool OperationButton(Operation op) {
       equalsPressed=false;
+      if(IsError(text)){
+        return false;
+      }
       if (currentOperand == 0) {
         // Store first operand
         currentOperand = 1;
@@ -201,31 +235,32 @@ namespace Calculator {
         operand2 = operand1;
         buffer.Clear();
         currentOperation = op;
+        return true;
       } else {
         if(buffer.Length==0){
           currentOperation = op;
-          return;
+          return true;
         }
         EqualsButton();
         currentOperand = 0;
-        OperationButton(op);
+        return OperationButton(op);
       }
     }
 
-    public void AddButton() {
-      OperationButton(Operation.Add);
+    public bool AddButton() {
+      return OperationButton(Operation.Add);
     }
 
-    public void SubtractButton() {
-      OperationButton(Operation.Subtract);
+    public bool SubtractButton() {
+      return OperationButton(Operation.Subtract);
     }
 
-    public void MultiplyButton() {
-      OperationButton(Operation.Multiply);
+    public bool MultiplyButton() {
+      return OperationButton(Operation.Multiply);
     }
 
-    public void DivideButton() {
-      OperationButton(Operation.Divide);
+    public bool DivideButton() {
+      return OperationButton(Operation.Divide);
     }
   }
 }

@@ -26,7 +26,7 @@ namespace Calculator {
     }
     
     private void Error(){
-        SystemSounds.Beep.Play();
+      SystemSounds.Beep.Play();
       
     }
     
@@ -68,29 +68,42 @@ namespace Calculator {
       Digit(0);
     }
     void Button4Click(object sender, EventArgs e) {
-      state.AddButton();
+      if(!state.AddButton()){
+        Error();
+      }
       text.Text = state.Text;
     }
     void Button14Click(object sender, EventArgs e) {
-      state.EqualsButton();
+      if(!state.EqualsButton()){
+        Error();
+      }
       text.Text = state.Text;
     }
     void Button3Click(object sender, EventArgs e) {
       Digit(3);
     }
     void Button21Click(object sender, EventArgs e) {
-      // not implemented yet
+      if(!state.PlusMinusButton()){
+        Error();
+      }
+      text.Text = state.Text;
     }
     void Button8Click(object sender, EventArgs e) {
-      state.SubtractButton();
+      if(!state.SubtractButton()){
+        Error();
+      }
       text.Text = state.Text;
     }
     void Button12Click(object sender, EventArgs e) {
-      state.MultiplyButton();
+      if(!state.MultiplyButton()){
+        Error();
+      }
       text.Text = state.Text;
     }
     void Button16Click(object sender, EventArgs e) {
-      state.DivideButton();
+      if(!state.DivideButton()){
+        Error();
+      }
       text.Text = state.Text;
     }
     void Button20Click(object sender, EventArgs e) {
@@ -146,16 +159,24 @@ namespace Calculator {
           state.EqualsButton();
           break;
         case '+':
-          state.AddButton();
+          if (!state.AddButton()) {
+            Error();
+          }
           break;
         case '-':
-          state.SubtractButton();
+          if (!state.SubtractButton()) {
+            Error();
+          }
           break;
         case '*':
-          state.MultiplyButton();
+          if (!state.MultiplyButton()) {
+            Error();
+          }
           break;
         case '/':
-          state.DivideButton();
+          if (!state.DivideButton()) {
+            Error();
+          }
           break;
         case '.':
           if (!state.DotButton()) {
