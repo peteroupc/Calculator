@@ -38,7 +38,8 @@ namespace PeterO.Calculator {
 
     public CalculatorState(int maxDigits) {
       this.maxDigits = maxDigits;
-this.context = PrecisionContext.ForPrecisionAndRounding(maxDigits, Rounding.Up)
+      this.context = PrecisionContext
+        .ForPrecisionAndRounding(maxDigits, Rounding.HalfUp)
         .WithSimplified(true);
       this.buffer = new StringBuilder();
       this.ClearInternal();
@@ -137,7 +138,7 @@ this.context = PrecisionContext.ForPrecisionAndRounding(maxDigits, Rounding.Up)
         return false;
       }
       if (this.buffer.Length == 0 && this.text.Length > 0 &&
-        !this.text.Equals("0")) {
+          !this.text.Equals("0")) {
         this.buffer.Append(this.text);
       }
       if (this.buffer.Length == 0 || this.buffer.ToString().Equals("0")) {

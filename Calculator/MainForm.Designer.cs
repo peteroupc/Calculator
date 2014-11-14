@@ -55,7 +55,6 @@ namespace Calculator {
       this.SuspendLayout();
 
       // text
-
       this.text.BackColor = System.Drawing.SystemColors.ControlLightLight;
       this.text.CausesValidation = false;
       this.text.Font = new System.Drawing.Font(
@@ -77,7 +76,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button1
-
       this.button1.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -100,7 +98,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button4
-
       this.button4.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -123,7 +120,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button2
-
       this.button2.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -146,7 +142,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button3
-
       this.button3.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -169,7 +164,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button5
-
       this.button5.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -192,7 +186,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button6
-
       this.button6.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -215,7 +208,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button7
-
       this.button7.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -238,7 +230,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button8
-
       this.button8.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -261,7 +252,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button9
-
       this.button9.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -284,7 +274,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button10
-
       this.button10.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -307,7 +296,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button11
-
       this.button11.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -330,7 +318,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button12
-
       this.button12.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -353,7 +340,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button13
-
       this.button13.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -376,7 +362,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button14
-
       this.button14.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -399,7 +384,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button16
-
       this.button16.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -422,7 +406,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button15
-
       this.button15.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -445,7 +428,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button17
-
       this.button17.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -468,7 +450,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button18
-
       this.button18.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -491,7 +472,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button19
-
       this.button19.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -514,7 +494,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button20
-
       this.button20.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -537,7 +516,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // button21
-
       this.button21.Font = new System.Drawing.Font(
         "Arial", 12F,
         System.Drawing.FontStyle.Regular,
@@ -560,7 +538,6 @@ namespace Calculator {
         System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
 
       // MainForm
-
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(284, 282);
