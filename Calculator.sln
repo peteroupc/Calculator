@@ -1,6 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{ED7BAEF0-07B9-4DF9-8FCC-42C17958D5C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONCBOR", "JSONCBOR\JSONCBOR.csproj", "{3639F15F-C140-4B29-9FB0-1C39278BBE51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +16,12 @@ Global
 		{ED7BAEF0-07B9-4DF9-8FCC-42C17958D5C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED7BAEF0-07B9-4DF9-8FCC-42C17958D5C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED7BAEF0-07B9-4DF9-8FCC-42C17958D5C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3639F15F-C140-4B29-9FB0-1C39278BBE51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3639F15F-C140-4B29-9FB0-1C39278BBE51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3639F15F-C140-4B29-9FB0-1C39278BBE51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3639F15F-C140-4B29-9FB0-1C39278BBE51}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

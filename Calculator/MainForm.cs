@@ -264,5 +264,12 @@ KeyPressEventArgs e) {
         e.IsInputKey = true;
       }
     }
+
+    private void button19_Click(object sender, EventArgs e) {
+      if (!this.state.SquareRootButton()) {
+        this.Error();
+      }
+      this.text.Text = this.state.Text;
+    }
   }
 }
