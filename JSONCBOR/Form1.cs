@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using PeterO.Cbor;
 
 namespace JSONCBOR {
-
 /// </summary>
 public partial class Form1 : Form {
     CBORObject cborData = null;

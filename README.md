@@ -10,7 +10,7 @@ If you like this software, consider donating to me at this link: [http://upokece
 This package contains two demo programs:
 
 * A calculator for .NET, intended to demonstrate the arbitrary-precision arithmetic
-capabilities of the CBOR library.  
+capabilities of the CBOR library.
 * A converter from JSON to CBOR and back, intended to demonstrate the CBOR
 and JSON features of the CBOR library.
 
