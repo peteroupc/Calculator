@@ -12,13 +12,13 @@ using PeterO.Cbor;
 namespace JSONCBOR {
 /// </summary>
 public partial class Form1 : Form {
-    CBORObject cborData = null;
-    string cborFile = null;
-    string jsonFile = null;
-    CBORObject jsonData = null;
+    private CBORObject cborData = null;
+    private string cborFile = null;
+    private string jsonFile = null;
+    private CBORObject jsonData = null;
 
     public Form1() {
-      InitializeComponent();
+      this.InitializeComponent();
     }
 
     private void button1_Click(object sender, EventArgs e) {
@@ -30,7 +30,7 @@ public partial class Form1 : Form {
       ofd.CheckFileExists = true;
       ofd.CheckPathExists = true;
       ofd.RestoreDirectory = false;
-      ofd.FileOk += JsonFileOk;
+      ofd.FileOk += this.JsonFileOk;
       ofd.ShowDialog();
     }
 
@@ -38,10 +38,10 @@ public partial class Form1 : Form {
       var ofd = (OpenFileDialog)sender;
       using (var stream = ofd.OpenFile()) {
         try {
-          jsonData = CBORObject.ReadJSON(stream);
-          jsonLabel.Text = ofd.FileName;
-          jsonFile = ofd.FileName;
-          convertToCbor.Enabled = true;
+          this.jsonData = CBORObject.ReadJSON(stream);
+          this.jsonLabel.Text = ofd.FileName;
+          this.jsonFile = ofd.FileName;
+          this.convertToCbor.Enabled = true;
         } catch (CBORException) {
           MessageBox.Show("Not a JSON file.");
           e.Cancel = false;
@@ -58,7 +58,7 @@ public partial class Form1 : Form {
       ofd.CheckFileExists = true;
       ofd.CheckPathExists = true;
       ofd.RestoreDirectory = false;
-      ofd.FileOk += CborFileOk;
+      ofd.FileOk += this.CborFileOk;
       ofd.ShowDialog();
     }
 
@@ -66,10 +66,10 @@ public partial class Form1 : Form {
       var ofd = (OpenFileDialog)sender;
       using (var stream = ofd.OpenFile()) {
         try {
-          cborData = CBORObject.Read(stream);
-          cborLabel.Text = ofd.FileName;
-          cborFile = ofd.FileName;
-          convertToJson.Enabled = true;
+          this.cborData = CBORObject.Read(stream);
+          this.cborLabel.Text = ofd.FileName;
+          this.cborFile = ofd.FileName;
+          this.convertToJson.Enabled = true;
         } catch (CBORException) {
           MessageBox.Show("Not a CBOR file.");
           e.Cancel = false;
@@ -80,14 +80,14 @@ public partial class Form1 : Form {
     private void convertToCbor_Click(object sender, EventArgs e) {
       var ofd = new SaveFileDialog();
       ofd.AddExtension = true;
-      ofd.FileName = System.IO.Path.ChangeExtension(jsonFile,".cbor");
+      ofd.FileName = System.IO.Path.ChangeExtension(this.jsonFile, ".cbor");
       ofd.DefaultExt = ".cbor";
       ofd.Filter = "CBOR files (*.cbor)|*.cbor|All files (*.*)|*.*";
       ofd.AutoUpgradeEnabled = true;
       ofd.CheckFileExists = false;
       ofd.CheckPathExists = true;
       ofd.RestoreDirectory = false;
-      ofd.FileOk += CborConvertOk;
+      ofd.FileOk += this.CborConvertOk;
       ofd.ShowDialog();
     }
 
@@ -95,7 +95,7 @@ public partial class Form1 : Form {
       var ofd = (SaveFileDialog)sender;
       using (var stream = ofd.OpenFile()) {
         try {
-          jsonData.WriteTo(stream);
+          this.jsonData.WriteTo(stream);
         } catch (System.IO.IOException) {
           MessageBox.Show("Failed to write to the file.");
         }
@@ -105,14 +105,14 @@ public partial class Form1 : Form {
     private void convertToJson_Click(object sender, EventArgs e) {
       var ofd = new SaveFileDialog();
       ofd.AddExtension = true;
-      ofd.FileName = System.IO.Path.ChangeExtension(cborFile, ".json");
+      ofd.FileName = System.IO.Path.ChangeExtension(this.cborFile, ".json");
       ofd.DefaultExt = ".json";
       ofd.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
       ofd.AutoUpgradeEnabled = true;
       ofd.CheckFileExists = false;
       ofd.CheckPathExists = true;
       ofd.RestoreDirectory = false;
-      ofd.FileOk += JsonConvertOk;
+      ofd.FileOk += this.JsonConvertOk;
       ofd.ShowDialog();
     }
 
@@ -120,7 +120,7 @@ public partial class Form1 : Form {
       var ofd = (SaveFileDialog)sender;
       using (var stream = ofd.OpenFile()) {
         try {
-          cborData.WriteJSONTo(stream);
+          this.cborData.WriteJSONTo(stream);
         } catch (System.IO.IOException) {
           MessageBox.Show("Failed to write to the file.");
         }

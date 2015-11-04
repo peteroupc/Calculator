@@ -1,5 +1,6 @@
 namespace JSONCBOR {
-  partial class Form1 {
+/// </summary>
+public partial class Form1 {
     /// <summary>Required designer variable.</summary>
     private System.ComponentModel.IContainer components = null;
 
@@ -7,15 +8,16 @@ namespace JSONCBOR {
     /// <param name='disposing'>True if managed resources should be disposed;
     /// otherwise, false.</param>
     protected override void Dispose(bool disposing) {
-      if (disposing && (components != null)) {
-        components.Dispose();
+      if (disposing && (this.components != null)) {
+        this.components.Dispose();
       }
       base.Dispose(disposing);
     }
 
     #region Windows Form Designer generated code
 
-    /// <summary>Required method for Designer support - do not modify the contents
+    /// <summary>Required method for Designer support - do not modify the
+    /// contents
     /// of this method with the code editor.</summary>
     private void InitializeComponent() {
       this.button1 = new System.Windows.Forms.Button();
