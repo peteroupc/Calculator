@@ -13,8 +13,13 @@ If you like this software, consider donating to me at this link: [http://upokece
 
 This package contains two demo programs:
 
-* A calculator for .NET, intended to demonstrate the arbitrary-precision arithmetic
-capabilities of the CBOR library.
+* A calculator for .NET intended to demonstrate two things about the CBOR
+library:
+    * First, this program shows how CBOR can serve as a data format for storing application configuration data.
+      Here, this program saves the last position of the window when it exits into a CBOR
+      configuration file.
+    * Second, this program uses the arbitrary-precision arithmetic capabilities of the
+       CBOR library in its calculations.
 * A converter from JSON to CBOR and back, intended to demonstrate the CBOR
 and JSON features of the CBOR library.
 

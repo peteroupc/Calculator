@@ -15,6 +15,28 @@ namespace Calculator {
   internal partial class MainForm : Form
   {
     private readonly CalculatorState state;
+    private ProgramConfig config;
+
+    private ProgramConfig InitializeConfig() {
+      var config = new ProgramConfig("config");
+      int x = config.GetInt32OrDefault("x", this.Left);
+      int y = config.GetInt32OrDefault("y", this.Top);
+      int width = config.GetInt32OrDefault("width", this.Width);
+      int height = config.GetInt32OrDefault("height", this.Height);
+      this.Left = Math.Max(0, x);
+      this.Top = Math.Max(0, y);
+      this.Width = Math.Max(0, width);
+      this.Height = Math.Max(0, height);
+      return config;
+    }
+
+    private void SaveConfig() {
+      if (this.config != null) {
+        this.config.SetObject("x", this.Left) .SetObject("y", this.Top)
+          .SetObject("width", this.Width).SetObject("height", this.Height)
+          .Save();
+      }
+    }
 
     public MainForm() {
       this.InitializeComponent();
@@ -270,6 +292,16 @@ KeyPressEventArgs e) {
         this.Error();
       }
       this.text.Text = this.state.Text;
+    }
+
+    private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
+      this.SaveConfig();
+    }
+
+    private void MainForm_Load(object sender, EventArgs e) {
+      // Initialize config here, rather than in the constructor;
+      // the system may automatically move the window in between
+      this.config = this.InitializeConfig();
     }
   }
 }
