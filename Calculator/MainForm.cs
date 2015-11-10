@@ -18,23 +18,12 @@ namespace Calculator {
     private ProgramConfig config;
 
     private ProgramConfig InitializeConfig() {
-      var config = new ProgramConfig("config");
-      int x = config.GetInt32OrDefault("x", this.Left);
-      int y = config.GetInt32OrDefault("y", this.Top);
-      int width = config.GetInt32OrDefault("width", this.Width);
-      int height = config.GetInt32OrDefault("height", this.Height);
-      this.Left = Math.Max(0, x);
-      this.Top = Math.Max(0, y);
-      this.Width = Math.Max(0, width);
-      this.Height = Math.Max(0, height);
-      return config;
+      return new ProgramConfig("config").FormPosFromConfig(this);
     }
 
     private void SaveConfig() {
       if (this.config != null) {
-        this.config.SetObject("x", this.Left).SetObject("y", this.Top)
-          .SetObject("width", this.Width).SetObject("height", this.Height)
-          .Save();
+        this.config.FormPosToConfig(this).Save();
       }
     }
 

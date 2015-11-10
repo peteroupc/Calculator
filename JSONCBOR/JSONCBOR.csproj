@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Calculator\FormConfig.cs">
+      <Link>FormConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\Calculator\ProgramConfig.cs">
+      <Link>ProgramConfig.cs</Link>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
   <Import Project="$(MSBuildExtensionsPath)\StyleCop\v4.7\StyleCop.targets" />
 </Project>

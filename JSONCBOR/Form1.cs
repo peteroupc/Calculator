@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PeterO.Cbor;
+using Calculator;
 
 namespace JSONCBOR {
 /// </summary>
@@ -16,6 +17,7 @@ public partial class Form1 : Form {
     private string cborFile = null;
     private string jsonFile = null;
     private CBORObject jsonData = null;
+    private ProgramConfig config = null;
 
     public Form1() {
       this.InitializeComponent();
@@ -125,6 +127,14 @@ public partial class Form1 : Form {
           MessageBox.Show("Failed to write to the file.");
         }
       }
+    }
+
+    private void Form1_Load(object sender, EventArgs e) {
+      this.config = new ProgramConfig("config").FormPosFromConfig(this);
+    }
+
+    private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+      this.config.FormPosToConfig(this).Save();
     }
   }
 }

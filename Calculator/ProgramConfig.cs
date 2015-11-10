@@ -18,8 +18,8 @@ namespace Calculator {
     /// Currently
     /// this only works for .NET Framework applications.</summary>
     private class IsolatedStream : IDisposable {
-      internal IsolatedStorageFile store;
-      internal Stream stream;
+      private IsolatedStorageFile store;
+      private Stream stream;
 
       public IsolatedStream(string name, bool write) {
         this.store = IsolatedStorageFile.GetStore(
