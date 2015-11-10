@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 
@@ -10,26 +11,63 @@ namespace Calculator {
     /// <summary>Holds a program's configuration data. Uses CBOR as the
     /// serialization format.</summary>
   internal class ProgramConfig {
-    internal CBORObject config;
-    internal string file;
+    private CBORObject config;
+    private string file;
 
-    public ProgramConfig(string configName) {
-      this.file = configName + ".cbor";
-      if (File.Exists(this.file)) {
-        using (var fs = new FileStream(this.file, FileMode.Open)) {
-          try {
-            this.config = CBORObject.Read(fs);
-          } catch (CBORException) {
-            this.config = null;
-          }
+    /// <summary>IsolatedStream abstraction for application-specific data.
+    /// Currently
+    /// this only works for .NET Framework applications.</summary>
+    private class IsolatedStream : IDisposable {
+      internal IsolatedStorageFile store;
+      internal Stream stream;
+
+      public IsolatedStream(string name, bool write) {
+        this.store = IsolatedStorageFile.GetStore(
+          IsolatedStorageScope.Domain | IsolatedStorageScope.User | IsolatedStorageScope.Assembly,
+          null,
+          null);
+        if (this.store.FileExists(name) || write) {
+          this.stream = new IsolatedStorageFileStream(
+            name,
+            write ? FileMode.Create : FileMode.Open);
         }
       }
+
+      public Stream Stream {
+        get {
+ return this.stream;
+}
+      }
+
+      public void Dispose() {
+        if (this.store != null) {
+ this.store.Dispose();
+}
+        if (this.stream != null) {
+ this.stream.Dispose();
+}
+        this.store = null;
+        this.stream = null;
+      }
+    }
+
+   public ProgramConfig(string configName) {
+      this.file = configName + ".cbor";
+        using (var fs = new IsolatedStream(this.file, false)) {
+          if (fs.Stream != null) {
+            try {
+              this.config = CBORObject.Read(fs.Stream);
+            } catch (CBORException) {
+              this.config = null;
+            }
+          }
+        }
       this.config = this.config ?? CBORObject.NewMap();
     }
 
     public ProgramConfig Save() {
-      using (var fs = new FileStream(this.file, FileMode.Create)) {
-        this.config.WriteTo(fs);
+      using (var fs = new IsolatedStream(this.file, true)) {
+        this.config.WriteTo(fs.Stream);
       }
       return this;
     }
@@ -44,7 +82,7 @@ namespace Calculator {
         return null;
       } else {
         CBORObject value = this.config[name];
-      return (value.Type != CBORType.TextString) ? null : (value.AsString());
+      return (value.Type != CBORType.TextString) ? null : value.AsString();
       }
     }
 
