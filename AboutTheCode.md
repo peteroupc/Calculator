@@ -40,7 +40,7 @@ of the methods of `CalculatorState`:
 The `CalculatorState` constructor initializes a calculator state with a digit precision of `maxDigits`. This
 means that up to that many digits will be shown on the display.  The calculator program sets this to
 18 (at the `MainForm` constructor), but this can be set to any number desired (as long as it's 1 or more).
-`CalculatorState` use the CBOR library's `ExtendedDecimal` class for storing numbers and doing
+`CalculatorState` uses the CBOR library's `ExtendedDecimal` class for storing numbers and doing
 operations on them, and it uses that library's `PrecisionContext` class to limit their precision to the
 given number of digits.
 
