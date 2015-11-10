@@ -22,11 +22,42 @@ sometimes provide unintuitive results, due to using a binary rather than a
 decimal system.
 
 The CBOR library supports arbitrary precision numbers (both binary and decimal)
-mostly because several CBOR tags (two in the RFC and two in supplementary specification)
-support these kinds of numbers, and it was seen useful to perform arithmetic
+mostly because several CBOR tags (two of which are defined in the Request For Comments
+that defines CBOR) support these kinds of numbers, and it was seen useful to perform arithmetic
 and other useful operations on these kinds of numbers.
 
-TODO: Discuss CalculatorState
+The `CalculatorState` class stores the calculator's current state, such as which number is currently
+being displayed and which operation is currently being carried out.  The following lists some
+of the methods of `CalculatorState`:
+
+        public CalculatorState(int maxDigits);
+        public string Text { get; }
+        public bool DotButton();
+        public bool PlusMinusButton();
+        public bool EqualsButton();
+        public bool DigitButton();
+
+The `CalculatorState` constructor initializes a calculator state with a digit precision of `maxDigits`. This
+means that up to that many digits will be shown on the display.  The calculator program sets this to
+18 (at the `MainForm` constructor), but this can be set to any number desired (as long as it's 1 or more).
+`CalculatorState` use the CBOR library's `ExtendedDecimal` class for storing numbers and doing
+operations on them, and it uses that library's `PrecisionContext` class to limit their precision to the
+given number of digits.
+
+The `Text` property gets a string showing what the calculator is currently displaying.  This string is
+retrieved each time a button is pressed and the text box at the top is updated with that string.
+
+The class also includes several methods ending in `Button`, such as `DotButton` and `DigitButton`.  These
+methods change the calculator state so it behaves much like an ordinary calculator would with the
+corresponding buttons.  For example, the `DotButton` method adds a dot to the current input if it doesn't
+have one already; the `EqualsButton` method carries out an arithmetic operation, and so on.
+
+### Abstraction
+
+The `CalculatorState` class exists as an abstraction; it separates the calculator logic from the
+calculator user interface, and can be considered part of the "model" in the "model-view-controller" design
+pattern.  Because of this abstraction, this class can be used in other programs, besides Windows Forms
+programs, that need the functionality of a calculator.
 
 ## Storing Application Settings
 
@@ -89,8 +120,8 @@ the user data to per-user storage:
 As a result, the last used window position and size are restored if the user runs
 the program again.
 
-It's also possible to save user data while the program is running (for instance, after
-the user changes a program setting) or to access settings at runtime, but these
+It's also possible to save user settings while the program is running (for instance, after
+the user changes a program setting) or to access user settings at runtime, but these
 possibilities are currently not demonstrated in the calculator program.
 
 ### Reading and Writing Settings
@@ -128,9 +159,9 @@ demo, the three data types string, `double`, and `int` are often sufficient.
 
 I've made the `ProgramConfig` class general enough that it can be used in many different
 kinds of programs; for instance, it's also used in [another demo program of
-mine](https://github.com/peteroupc/Calculator/JSONCBOR) that converts JSON
-to CBOR and back.  In this program, too, saves the last known window position
-and size in the same way as the calculator demo.  Since it's specific to Windows
+mine](https://github.com/peteroupc/Calculator/tree/master/JSONCBOR) that converts JSON
+to CBOR and back.  Tshis program, too, saves the last known window position
+and size in the same way as the calculator demo.  Since they're specific to Windows
 Forms programs, certain "methods" of ProgramConfig were designed as extension
 methods and placed in a separate class, `FormConfig`.
 
@@ -138,10 +169,17 @@ However, while `ProgramConfig` is very general, it relies on isolated storage, w
 unfortunately isn't supported in Windows Store apps, which use a very different
 concept for per-user storage.  This is why ProgramConfig contains a nested
 class called `IsolatedStream`, which is designed to wrap the details of the per-user
-storage implementation.  If a version for Windows Store apps is needed,
+storage implementation.
+
+If a version of per-user storage for Windows Store apps is needed,
 `IsolatedStream` can be updated to provide or call a Windows-Store-specific
 implementation of per-user storage.  This isn't done here, since the main purpose
 is to demonstate the features of my CBOR library.
+
+I should note that the CBOR library contains no methods to directly read and
+write to files; it instead reads and writes data to streams (such as the `Read` and
+`WriteTo` methods for CBOR data and `ReadJSON` and `WriteJSONTo` methods
+for JavaScript Object Notation).
 
 ## Conclusion
 
