@@ -14,8 +14,7 @@ namespace Calculator {
     private CBORObject config;
     private string file;
 
-    /// <summary>IsolatedStream abstraction for application-specific data.
-    /// Currently
+    /// <summary>IsolatedStream abstraction for application-specific data. Currently
     /// this only works for .NET Framework applications.</summary>
     private class IsolatedStream : IDisposable {
       private IsolatedStorageFile store;
