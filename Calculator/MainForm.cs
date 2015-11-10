@@ -32,8 +32,10 @@ namespace Calculator {
 
     private void SaveConfig() {
       if (this.config != null) {
-        this.config.SetObject("x", this.Left) .SetObject("y", this.Top)
-          .SetObject("width", this.Width).SetObject("height", this.Height)
+        this.config.SetObject("x", this.Left)
+          .SetObject("y", this.Top)
+          .SetObject("width", this.Width)
+          .SetObject("height", this.Height)
           .Save();
       }
     }
