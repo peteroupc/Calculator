@@ -21,7 +21,12 @@ is powered by my CBOR library's support for arbitrary-precision decimal arithmet
 sometimes provide unintuitive results, due to using a binary rather than a
 decimal system.
 
-TODO: Discuss CalculatorState.
+The CBOR library supports arbitrary precision numbers (both binary and decimal)
+mostly because several CBOR tags (two in the RFC and two in supplementary specification)
+support these kinds of numbers, and it was seen useful to perform arithmetic
+and other useful operations on these kinds of numbers.
+
+TODO: Discuss CalculatorState
 
 ## Storing Application Settings
 
@@ -90,11 +95,38 @@ possibilities are currently not demonstrated in the calculator program.
 
 ### Reading and Writing Settings
 
-To be written.
+The `ProgramConfig` class creates a CBOR key-value map.  Three
+of its methods, `GetString`, `GetInt32OrDefault`, and `GetDouble`,
+retrieve a value by its key.  The method `SetObject` converts many kinds
+of objects (not just strings and numbers) to an appropriate format for
+the CBOR key-value map.
+
+The calculator demo, though, uses only integers (for the window position
+and size), so it calls `GetInt32OrDefault` and sets the default value for
+each parameter to the current position and size of the window as its
+generated.  (`GetInt32OrDefault` uses the default if the key doesn't
+exist or if the existing value has the wrong type or can't be converted.)
+
+To be more specific, the calculator demo uses the following keys
+in the `ProgramConfig` map:
+
+* `"x"` - X coordinate of the calculator window's top-left corner.
+* `"y"` - Y coordinate of the window's top-left corner.
+* `"width"` - Width, in pixels, of the window's top-left corner.
+* `"height"` - Height, in pixels, of the window's top-left corner.
+
+There are currently only three kinds of data that `ProgramConfig` can "get":
+strings, `double`s, and 32-bit unsigned integers (`int`s).  This is often adequate
+for most kinds of user settings (for example, boolean values -- either
+true or false -- can be expressed using integers or strings), but of
+course, CBOR can store many other kinds of data types, such as
+nested arrays, nested maps, byte sequences, the undefined-value,
+and numbers of arbitrary precision.  But for user settings, especially for the calculator
+demo, the three data types string, `double`, and `int` are often sufficient.
 
 ### ProgramConfig implementation
 
-I've made the ProgramConfig class general enough that it can be used in many different
+I've made the `ProgramConfig` class general enough that it can be used in many different
 kinds of programs; for instance, it's also used in [another demo program of
 mine](https://github.com/peteroupc/Calculator/JSONCBOR) that converts JSON
 to CBOR and back.  In this program, too, saves the last known window position
@@ -110,3 +142,10 @@ storage implementation.  If a version for Windows Store apps is needed,
 `IsolatedStream` can be updated to provide or call a Windows-Store-specific
 implementation of per-user storage.  This isn't done here, since the main purpose
 is to demonstate the features of my CBOR library.
+
+## Conclusion
+
+That concludes my discussion on how a [calculator program](https://github.com/peteroupc/Calculator) is implemented
+using [my CBOR library for C#](http://www.codeproject.com/Tips/897294/Concise-Binary-Object-Representation-CBOR-in-Cshar),
+including how its features fit into the program's design as well as tips on storing per-user
+settings in an application program.

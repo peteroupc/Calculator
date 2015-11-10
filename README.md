@@ -23,6 +23,8 @@ library:
 * A converter from JSON to CBOR and back, intended to demonstrate the CBOR
 and JSON features of the CBOR library.
 
+**See the [C# (.NET) API documentation](https://peteroupc.github.io/Calculator/AboutTheCode.html).**
+
 To compile this package, you first need to install the package "PeterO.Cbor" from the NuGet repository.
 
 Source Code
