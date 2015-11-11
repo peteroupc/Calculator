@@ -40,7 +40,7 @@ of the methods of `CalculatorState`:
 The `CalculatorState` constructor initializes a calculator state with a digit precision of `maxDigits`. This
 means that up to that many digits will be shown on the display.  The calculator program sets this to
 18 (at the `MainForm` constructor), but this can be set to any number desired (as long as it's 1 or more).
-`CalculatorState` uses the CBOR library's `ExtendedDecimal` class for storing numbers and doing
+`CalculatorState` use the CBOR library's `ExtendedDecimal` class for storing numbers and doing
 operations on them, and it uses that library's `PrecisionContext` class to limit their precision to the
 given number of digits.
 
@@ -159,8 +159,8 @@ demo, the three data types string, `double`, and `int` are often sufficient.
 
 I've made the `ProgramConfig` class general enough that it can be used in many different
 kinds of programs; for instance, it's also used in [another demo program of
-mine](https://github.com/peteroupc/Calculator/tree/master/JSONCBOR) that converts JSON
-to CBOR and back.  Tshis program, too, saves the last known window position
+mine](https://github.com/peteroupc/Calculator/JSONCBOR) that converts JSON
+to CBOR and back.  This program, too, saves the last known window position
 and size in the same way as the calculator demo.  Since they're specific to Windows
 Forms programs, certain "methods" of ProgramConfig were designed as extension
 methods and placed in a separate class, `FormConfig`.
