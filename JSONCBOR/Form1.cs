@@ -1,39 +1,34 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PeterO.Cbor;
 using Calculator;
+using PeterO.Cbor;
+using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace JSONCBOR {
-/// </summary>
-public partial class Form1 : Form {
-    private CBORObject cborData = null;
-    private string cborFile = null;
-    private string jsonFile = null;
-    private CBORObject jsonData = null;
-    private ProgramConfig config = null;
+
+  public partial class Form1 : Form {
+    private CBORObject cborData;
+    private string cborFile;
+    private string jsonFile;
+    private CBORObject jsonData;
+    private ProgramConfig config;
 
     public Form1() {
       this.InitializeComponent();
     }
 
     private void button1_Click(object sender, EventArgs e) {
-      var ofd = new OpenFileDialog();
-      ofd.AddExtension = true;
-      ofd.DefaultExt = ".json";
-      ofd.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
-      ofd.AutoUpgradeEnabled = true;
-      ofd.CheckFileExists = true;
-      ofd.CheckPathExists = true;
-      ofd.RestoreDirectory = false;
-      ofd.FileOk += this.JsonFileOk;
-      ofd.ShowDialog();
+      using (var ofd = new OpenFileDialog()) {
+        ofd.AddExtension = true;
+        ofd.DefaultExt = ".json";
+        ofd.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+        ofd.AutoUpgradeEnabled = true;
+        ofd.CheckFileExists = true;
+        ofd.CheckPathExists = true;
+        ofd.RestoreDirectory = false;
+        ofd.FileOk += this.JsonFileOk;
+        ofd.ShowDialog();
+      }
     }
 
     private void JsonFileOk(object sender, CancelEventArgs e) {
@@ -52,16 +47,17 @@ public partial class Form1 : Form {
     }
 
     private void button2_Click(object sender, EventArgs e) {
-      var ofd = new OpenFileDialog();
-      ofd.AddExtension = true;
-      ofd.DefaultExt = ".cbor";
-      ofd.Filter = "CBOR files (*.cbor)|*.cbor|All files (*.*)|*.*";
-      ofd.AutoUpgradeEnabled = true;
-      ofd.CheckFileExists = true;
-      ofd.CheckPathExists = true;
-      ofd.RestoreDirectory = false;
-      ofd.FileOk += this.CborFileOk;
-      ofd.ShowDialog();
+      using (var ofd = new OpenFileDialog()) {
+        ofd.AddExtension = true;
+        ofd.DefaultExt = ".cbor";
+        ofd.Filter = "CBOR files (*.cbor)|*.cbor|All files (*.*)|*.*";
+        ofd.AutoUpgradeEnabled = true;
+        ofd.CheckFileExists = true;
+        ofd.CheckPathExists = true;
+        ofd.RestoreDirectory = false;
+        ofd.FileOk += this.CborFileOk;
+        ofd.ShowDialog();
+      }
     }
 
     private void CborFileOk(object sender, CancelEventArgs e) {
@@ -80,17 +76,18 @@ public partial class Form1 : Form {
     }
 
     private void convertToCbor_Click(object sender, EventArgs e) {
-      var ofd = new SaveFileDialog();
-      ofd.AddExtension = true;
-      ofd.FileName = System.IO.Path.ChangeExtension(this.jsonFile, ".cbor");
-      ofd.DefaultExt = ".cbor";
-      ofd.Filter = "CBOR files (*.cbor)|*.cbor|All files (*.*)|*.*";
-      ofd.AutoUpgradeEnabled = true;
-      ofd.CheckFileExists = false;
-      ofd.CheckPathExists = true;
-      ofd.RestoreDirectory = false;
-      ofd.FileOk += this.CborConvertOk;
-      ofd.ShowDialog();
+      using (var ofd = new SaveFileDialog()) {
+        ofd.AddExtension = true;
+        ofd.FileName = System.IO.Path.ChangeExtension(this.jsonFile, ".cbor");
+        ofd.DefaultExt = ".cbor";
+        ofd.Filter = "CBOR files (*.cbor)|*.cbor|All files (*.*)|*.*";
+        ofd.AutoUpgradeEnabled = true;
+        ofd.CheckFileExists = false;
+        ofd.CheckPathExists = true;
+        ofd.RestoreDirectory = false;
+        ofd.FileOk += this.CborConvertOk;
+        ofd.ShowDialog();
+      }
     }
 
     private void CborConvertOk(object sender, CancelEventArgs e) {
@@ -105,17 +102,18 @@ public partial class Form1 : Form {
     }
 
     private void convertToJson_Click(object sender, EventArgs e) {
-      var ofd = new SaveFileDialog();
-      ofd.AddExtension = true;
-      ofd.FileName = System.IO.Path.ChangeExtension(this.cborFile, ".json");
-      ofd.DefaultExt = ".json";
-      ofd.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
-      ofd.AutoUpgradeEnabled = true;
-      ofd.CheckFileExists = false;
-      ofd.CheckPathExists = true;
-      ofd.RestoreDirectory = false;
-      ofd.FileOk += this.JsonConvertOk;
-      ofd.ShowDialog();
+      using (var ofd = new SaveFileDialog()) {
+        ofd.AddExtension = true;
+        ofd.FileName = System.IO.Path.ChangeExtension(this.cborFile, ".json");
+        ofd.DefaultExt = ".json";
+        ofd.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
+        ofd.AutoUpgradeEnabled = true;
+        ofd.CheckFileExists = false;
+        ofd.CheckPathExists = true;
+        ofd.RestoreDirectory = false;
+        ofd.FileOk += this.JsonConvertOk;
+        ofd.ShowDialog();
+      }
     }
 
     private void JsonConvertOk(object sender, CancelEventArgs e) {
@@ -130,11 +128,12 @@ public partial class Form1 : Form {
     }
 
     private void Form1_Load(object sender, EventArgs e) {
-      this.config = new ProgramConfig("config").FormPosFromConfig(this);
+      this.config = new ProgramConfig(nameof(config)).FormPosFromConfig(
+        new FormWindowInfo(this));
     }
 
     private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
-      this.config.FormPosToConfig(this).Save();
+      this.config.FormPosToConfig(new FormWindowInfo(this)).Save();
     }
   }
 }

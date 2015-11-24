@@ -7,7 +7,6 @@ at: http://upokecenter.dreamhosters.com/articles/donate-now-2/
  */
 using System;
 using System.Text;
-using PeterO;
 
 namespace PeterO.Calculator {
   internal sealed class CalculatorState {
@@ -22,7 +21,7 @@ namespace PeterO.Calculator {
     private readonly StringBuilder buffer;
     private readonly PrecisionContext context;
 
-    private int maxDigits;
+    private readonly int maxDigits;
 
     private ExtendedDecimal operand1;
     private ExtendedDecimal operand2;
@@ -73,12 +72,12 @@ namespace PeterO.Calculator {
       this.text = dec.IsNaN() ? "Error" : dec.ToString();
     }
 
-    private bool IsError(string textValue) {
+    private static bool IsError(string textValue) {
       return textValue.Equals("Error");
     }
 
     private int DigitCount() {
-      int count = 0;
+      var count = 0;
       for (int i = 0; i < this.buffer.Length; ++i) {
         if (this.buffer[i] >= '0' && this.buffer[0] <= '9') {
           ++count;
@@ -92,10 +91,10 @@ namespace PeterO.Calculator {
         this.equalsPressed = false;
         this.currentOperand = 0;
       }
-      if (this.IsError(this.text)) {
+      if (IsError(this.text)) {
         return false;
       }
-      int count = this.DigitCount();
+      var count = this.DigitCount();
       if (digit != 0 && this.buffer.ToString().Equals("0")) {
         // Replace 0 with another digit
         this.buffer.Clear();
@@ -115,7 +114,7 @@ namespace PeterO.Calculator {
 
     public bool DotButton() {
       this.equalsPressed = false;
-      if (this.IsError(this.text)) {
+      if (IsError(this.text)) {
         return false;
       }
       if (this.buffer.Length == 0) {
@@ -133,7 +132,7 @@ namespace PeterO.Calculator {
 
     public bool PlusMinusButton() {
       this.equalsPressed = false;
-      if (this.IsError(this.text)) {
+      if (IsError(this.text)) {
         return false;
       }
       if (this.buffer.Length == 0 && this.text.Length > 0 &&
@@ -156,7 +155,7 @@ namespace PeterO.Calculator {
 
     public bool BackButton() {
       this.equalsPressed = false;
-      if (this.IsError(this.text)) {
+      if (IsError(this.text)) {
         return false;
       }
       if (this.buffer.Length == 0) {
@@ -194,7 +193,7 @@ namespace PeterO.Calculator {
     }
 
     public bool EqualsButton() {
-      if (this.IsError(this.text)) {
+      if (IsError(this.text)) {
         return false;
       }
       if (this.equalsPressed) {
@@ -219,10 +218,10 @@ namespace PeterO.Calculator {
 
     public bool SquareRootButton() {
       this.equalsPressed = false;
-      if (this.IsError(this.text)) {
+      if (IsError(this.text)) {
         return false;
       }
-      ExtendedDecimal op = ExtendedDecimal.FromString(this.text, this.context);
+      var op = ExtendedDecimal.FromString(this.text, this.context);
       op = op.SquareRoot(this.context);
       if (this.currentOperand == 0) {
         this.operand1 = op;
@@ -236,13 +235,17 @@ namespace PeterO.Calculator {
 
     public bool PercentButton() {
       this.equalsPressed = false;
-      if (this.IsError(this.text)) {
+      if (IsError(this.text)) {
         return false;
       }
       if (this.currentOperand == 0) {
-        this.operand1 = ExtendedDecimal.Zero;
+        this.operand1 = ExtendedDecimal.FromString(this.text, this.context);
+        this.operand1 = this.operand1.Multiply(Percent, this.context);
         this.SetText(this.operand1);
         this.buffer.Clear();
+        if (!this.operand1.IsNaN()) {
+          this.buffer.Append(this.buffer.ToString());
+        }
       } else {
         this.operand2 = ExtendedDecimal.FromString(this.text, this.context);
         this.operand2 = this.operand2.Multiply(Percent, this.context);
@@ -254,7 +257,7 @@ namespace PeterO.Calculator {
 
     private bool OperationButton(Operation op) {
       this.equalsPressed = false;
-      if (this.IsError(this.text)) {
+      if (IsError(this.text)) {
         return false;
       }
       if (this.currentOperand == 0) {

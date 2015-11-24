@@ -5,6 +5,8 @@ packages/
 Help/
 *.user
 *.nupkg
+*.dll
+*.exe
 *.versionsBackup
 *.sdsettings
 TestResults/

@@ -7,7 +7,7 @@ If you like this software, consider donating to me at this link: [http://upokece
 
 ----
 
-![Calculator](calc.png)
+![Calculator](calc.png)  ![WPF Calculator](wpfcalc.png)
 
 ![JSON-to-CBOR converter](jsoncbor.png)
 

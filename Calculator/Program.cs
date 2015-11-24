@@ -12,12 +12,13 @@ namespace Calculator {
     /// <summary>Class with program entry point.</summary>
   internal sealed class Program {
     /// <summary>Program entry point.</summary>
-    /// <param name='args'>A string[] object.</param>
     [STAThread]
-    private static void Main(string[] args) {
+    private static void Main() {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new MainForm());
+      using (var mainForm = new MainForm()) {
+        Application.Run(mainForm);
+      }
     }
   }
 }

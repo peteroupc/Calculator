@@ -1,10 +1,11 @@
 ## Introduction
 
-This article includes information on how a calculator program is implemented
+This page includes information on how a calculator program is implemented
 using [my CBOR library for C#](http://www.codeproject.com/Tips/897294/Concise-Binary-Object-Representation-CBOR-in-Cshar).
-(CBOR stands for Concise Binary Object Representation.)
+(CBOR stands for Concise Binary Object Representation.)  This page shows a Windows Forms
+and a Windows Presentation Foundation (WPF) version of the same program, demonstrating how my library works well in both kinds of programs.
 
-![Calculator](calc.png)
+![Windows Forms Calculator](calc.png)   ![WPF Calculator](wpfcalc.png)
 
 While it looks relatively simple, the [calculator program](https://github.com/peteroupc/Calculator) demonstrates two features of that library:
 
@@ -59,6 +60,12 @@ calculator user interface, and can be considered part of the "model" in the "mod
 pattern.  Because of this abstraction, this class can be used in other programs, besides Windows Forms
 programs, that need the functionality of a calculator.
 
+A second abstraction is the "controller": the `CalculatorController` class uses an interface to the
+program's main window (`IWindowInfo`) and contains similar methods to the `CalculatorState` class,
+except it acts more like a controller than a data model (each form implementation calls into
+`CalculatorController` rather than `CalculatorState`.)  The Windows Forms and WPF versions of the
+calculator have different `IWindowInfo` implementations
+
 ## Storing Application Settings
 
 CBOR's compact data format suits it well for storing things such as user settings.
@@ -73,6 +80,7 @@ The `ProgramConfig` class is used to store user settings.  It has these methods:
     public ProgramConfig SetObject(string name, object obj);
     public string GetString(string name);
     public int GetInt32OrDefault(string name, int defaultValue);
+    public double GetDoubleOrDefault(string name, double defaultValue);
     public double GetDouble(string name);
 
 In case the program is installed in what can be a read-only location, such as the Program
@@ -87,8 +95,8 @@ discussed below.)
 The ProgramConfig constructor opens a named file from per-user storage (with the ".cbor"
 extension, since it loads and saves CBOR files), and generates blank user data if the
 file doesn't exist (which is usually the case when the program is first run) or the file contains
-invalid data.  The calculator creates a ProgramConfig constructor on load of the form
-(see `MainForm.cs`):
+invalid data.  The calculator creates a `ProgramConfig` constructor on load of the form
+(see _MainForm.cs_):
 
     private void MainForm_Load(object sender, EventArgs e) {
       // Initialize config here, rather than in the constructor;
@@ -100,7 +108,7 @@ invalid data.  The calculator creates a ProgramConfig constructor on load of the
       return new ProgramConfig("config").FormPosFromConfig(this);
     }
 
-On the first run, the ProgramConfig is generated and populated with default values
+On the first run, the `ProgramConfig` is generated and populated with default values
 for the window's current position as it's loaded for the first time (due to the
 `FormPosFromConfig` method).
 
@@ -132,10 +140,10 @@ retrieve a value by its key.  The method `SetObject` converts many kinds
 of objects (not just strings and numbers) to an appropriate format for
 the CBOR key-value map.
 
-The calculator demo, though, uses only integers (for the window position
-and size), so it calls `GetInt32OrDefault` and sets the default value for
+The calculator demo, though, uses only numbers (for the window position
+and size), so it calls `GetDoubleOrDefault` and sets the default value for
 each parameter to the current position and size of the window as its
-generated.  (`GetInt32OrDefault` uses the default if the key doesn't
+generated.  (`GetDoubleOrDefault` uses the default if the key doesn't
 exist or if the existing value has the wrong type or can't be converted.)
 
 To be more specific, the calculator demo uses the following keys
@@ -149,7 +157,7 @@ in the `ProgramConfig` map:
 There are currently only three kinds of data that `ProgramConfig` can "get":
 strings, `double`s, and 32-bit unsigned integers (`int`s).  This is often adequate
 for most kinds of user settings (for example, boolean values -- either
-true or false -- can be expressed using integers or strings), but of
+`true` or `false` -- can be expressed using integers or strings), but of
 course, CBOR can store many other kinds of data types, such as
 nested arrays, nested maps, byte sequences, the undefined-value,
 and numbers of arbitrary precision.  But for user settings, especially for the calculator
@@ -161,22 +169,25 @@ I've made the `ProgramConfig` class general enough that it can be used in many d
 kinds of programs; for instance, it's also used in [another demo program of
 mine](https://github.com/peteroupc/Calculator/JSONCBOR) that converts JSON
 to CBOR and back.  This program, too, saves the last known window position
-and size in the same way as the calculator demo.  Since they're specific to Windows
-Forms programs, certain "methods" of ProgramConfig were designed as extension
-methods and placed in a separate class, `FormConfig`.
+and size in the same way as the calculator demo.  Certain "methods" of ProgramConfig
+were designed as extension methods and placed in a separate class, `FormConfig`.
+(FormConfig takes an abstract object that implements the IWindowInfo interface and
+retrieves and sets the window position.  There is a separate IWindowInfo implementation
+for the Windows Forms and WPF versions.)
 
 However, while `ProgramConfig` is very general, it relies on isolated storage, which
 unfortunately isn't supported in Windows Store apps, which use a very different
-concept for per-user storage.  This is why ProgramConfig contains a nested
-class called `IsolatedStream`, which is designed to wrap the details of the per-user
-storage implementation.
+concept for per-user storage.  (Isolated storage can be used in Windows Forms and
+WPF apps, as is done in this demo.) This is why ProgramConfig contains a nested class
+called `IsolatedStream`, which is designed to wrap the details of the per-user storage
+implementation.
 
 If a version of per-user storage for Windows Store apps is needed,
 `IsolatedStream` can be updated to provide or call a Windows-Store-specific
 implementation of per-user storage.  This isn't done here, since the main purpose
 is to demonstate the features of my CBOR library.
 
-I should note that the CBOR library contains no methods to directly read and
+I should note that the CBOR library itself contains no methods to directly read and
 write to files; it instead reads and writes data to streams (such as the `Read` and
 `WriteTo` methods for CBOR data and `ReadJSON` and `WriteJSONTo` methods
 for JavaScript Object Notation).

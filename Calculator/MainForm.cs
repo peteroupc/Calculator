@@ -6,291 +6,151 @@ If you like this, you should donate to Peter O.
 at: http://upokecenter.dreamhosters.com/articles/donate-now-2/
  */
 using System;
-using System.Media;
 using System.Windows.Forms;
-
-using PeterO.Calculator;
 
 namespace Calculator {
   internal partial class MainForm : Form
   {
-    private readonly CalculatorState state;
-    private ProgramConfig config;
-
-    private ProgramConfig InitializeConfig() {
-      return new ProgramConfig("config").FormPosFromConfig(this);
-    }
-
-    private void SaveConfig() {
-      if (this.config != null) {
-        this.config.FormPosToConfig(this).Save();
-      }
-    }
+    private CalculatorController cc;
 
     public MainForm() {
       this.InitializeComponent();
-      this.state = new CalculatorState(18);
-      this.text.Text = this.state.Text;
-    }
-
-    private void Error() {
-      SystemSounds.Beep.Play();
-    }
-
-    private void Digit(int digit) {
-      if (!this.state.DigitButton(digit)) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
-    }
-
-    internal void MainFormLoad(object sender, EventArgs e) {
-      this.text.Text = this.state.Text;
+      this.cc = new CalculatorController(new FormWindowInfo(this));
     }
 
     internal void Button1Click(object sender, MouseEventArgs e) {
-      this.Digit(1);
+      this.cc.Digit(1);
     }
 
     internal void Button2Click(object sender, MouseEventArgs e) {
-      this.Digit(2);
+      this.cc.Digit(2);
     }
 
     internal void Button5Click(object sender, MouseEventArgs e) {
-      this.Digit(4);
+      this.cc.Digit(4);
     }
 
     internal void Button6Click(object sender, MouseEventArgs e) {
-      this.Digit(5);
+      this.cc.Digit(5);
     }
 
     internal void Button7Click(object sender, MouseEventArgs e) {
-      this.Digit(6);
+      this.cc.Digit(6);
     }
 
     internal void Button9Click(object sender, MouseEventArgs e) {
-      this.Digit(7);
+      this.cc.Digit(7);
     }
 
     internal void Button10Click(object sender, MouseEventArgs e) {
-      this.Digit(8);
+      this.cc.Digit(8);
     }
 
     internal void Button11Click(object sender, MouseEventArgs e) {
-      this.Digit(9);
+      this.cc.Digit(9);
     }
 
     internal void Button13Click(object sender, MouseEventArgs e) {
-      this.Digit(0);
+      this.cc.Digit(0);
     }
 
     internal void Button4Click(object sender, MouseEventArgs e) {
-      if (!this.state.AddButton()) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
+      this.cc.AddButton();
     }
 
     internal void Button14Click(object sender, MouseEventArgs e) {
-      if (!this.state.EqualsButton()) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
+      this.cc.EqualsButton();
     }
 
     internal void Button3Click(object sender, MouseEventArgs e) {
-      this.Digit(3);
+      this.cc.Digit(3);
     }
 
     internal void Button21Click(object sender, MouseEventArgs e) {
-      if (!this.state.PlusMinusButton()) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
+      this.cc.PlusMinusButton();
     }
 
     internal void Button8Click(object sender, MouseEventArgs e) {
-      if (!this.state.SubtractButton()) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
+      this.cc.SubtractButton();
     }
 
     internal void Button12Click(object sender, MouseEventArgs e) {
-      if (!this.state.MultiplyButton()) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
+      this.cc.MultiplyButton();
     }
 
     internal void Button16Click(object sender, MouseEventArgs e) {
-      if (!this.state.DivideButton()) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
+      this.cc.DivideButton();
     }
 
     internal void Button20Click(object sender, MouseEventArgs e) {
-      if (!this.state.DotButton()) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
+      this.cc.DotButton();
     }
 
     internal void Button17Click(object sender, MouseEventArgs e) {
-      this.state.Clear();
-      this.text.Text = this.state.Text;
+      this.cc.ClearButton();
     }
 
     internal void MainFormKeyPress(
 object sender,
 KeyPressEventArgs e) {
-      bool handled = true;
-       switch (e.KeyChar) {
-        case '0':
-          this.Digit(0);
-          break;
-        case '1':
-          this.Digit(1);
-          break;
-        case '2':
-          this.Digit(2);
-          break;
-        case '3':
-          this.Digit(3);
-          break;
-        case '4':
-          this.Digit(4);
-          break;
-        case '5':
-          this.Digit(5);
-          break;
-        case '6':
-          this.Digit(6);
-          break;
-        case '7':
-          this.Digit(7);
-          break;
-        case '8':
-          this.Digit(8);
-          break;
-        case '9':
-          this.Digit(9);
-          break;
-        case '\b':
-          if (!this.state.BackButton()) {
-            this.Error();
-          }
-          break;
-        case '\r':
-          if (!this.state.EqualsButton()) {
-            this.Error();
-          }
-          break;
-        case '+':
-          if (!this.state.AddButton()) {
-            this.Error();
-          }
-          break;
-        case '-':
-          if (!this.state.SubtractButton()) {
-            this.Error();
-          }
-          break;
-        case '*':
-          if (!this.state.MultiplyButton()) {
-            this.Error();
-          }
-          break;
-        case '/':
-          if (!this.state.DivideButton()) {
-            this.Error();
-          }
-          break;
-        case '.':
-          if (!this.state.DotButton()) {
-            this.Error();
-          }
-          break;
-          default: handled = false;
-          break;
-      }
-      e.Handled |= handled;
-      this.text.Text = this.state.Text;
+      e.Handled |= this.cc.KeyPress(e.KeyChar);
     }
 
     internal void Button19Click(object sender, EventArgs e) {
-      if (!this.state.SquareRootButton()) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
+      this.cc.SquareRootButton();
     }
 
     internal void Button18Click(object sender, EventArgs e) {
-      this.state.ClearEntry();
-      this.text.Text = this.state.Text;
+      this.cc.ClearEntryButton();
     }
 
     private void button15_Click(object sender, MouseEventArgs e) {
-      if (!this.state.PercentButton()) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
+      this.cc.PercentButton();
     }
 
     private void GeneralKeyDown(object sender, KeyEventArgs e) {
       if (e.KeyCode == Keys.Enter) {
-        if (!this.state.EqualsButton()) {
-          this.Error();
-        }
-        this.text.Text = this.state.Text;
+        this.cc.EqualsButton();
         e.SuppressKeyPress = true;
       }
       if (e.KeyCode == Keys.Back) {
-        if (!this.state.BackButton()) {
-          this.Error();
-        }
-        this.text.Text = this.state.Text;
+        this.cc.BackButton();
         e.SuppressKeyPress = true;
       }
       if (e.KeyCode == Keys.Delete) {
-        this.state.ClearEntry();
-        this.text.Text = this.state.Text;
+        this.cc.ClearEntryButton();
         e.SuppressKeyPress = true;
       }
       if (e.KeyCode == Keys.Escape) {
-        this.state.Clear();
-        this.text.Text = this.state.Text;
+        this.cc.ClearButton();
         e.SuppressKeyPress = true;
       }
     }
 
     private void EnterBehavior(object sender, PreviewKeyDownEventArgs e) {
       if (e.KeyCode == Keys.Enter) {
-        if (!this.state.EqualsButton()) {
-          this.Error();
-        }
-        this.text.Text = this.state.Text;
+        this.cc.EqualsButton();
       } else {
         e.IsInputKey = true;
       }
     }
 
     private void button19_Click(object sender, EventArgs e) {
-      if (!this.state.SquareRootButton()) {
-        this.Error();
-      }
-      this.text.Text = this.state.Text;
+      this.cc.SquareRootButton();
     }
 
     private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
-      this.SaveConfig();
+      this.cc.SaveConfig();
     }
 
     private void MainForm_Load(object sender, EventArgs e) {
       // Initialize config here, rather than in the constructor;
       // the system may automatically move the window in between
-      this.config = this.InitializeConfig();
+      this.cc.InitializeConfig();
+    }
+
+    private void button12_Click(object sender, EventArgs e) {
+      this.cc.MultiplyButton();
     }
   }
 }

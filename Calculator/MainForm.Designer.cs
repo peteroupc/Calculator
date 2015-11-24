@@ -12,8 +12,8 @@ namespace Calculator {
     private System.ComponentModel.IContainer components;
 
     /// <summary>Disposes resources used by the form.</summary>
-    /// <param name='disposing'>True if managed resources should be disposed;
-    /// otherwise, false.</param>
+    /// <param name='disposing'>True if managed resources should be
+    /// disposed; otherwise, false.</param>
     protected override void Dispose(bool disposing) {
       if (disposing) {
         if (this.components != null) {
@@ -23,12 +23,10 @@ namespace Calculator {
       base.Dispose(disposing);
     }
 
-    /// <summary>This method is required for Windows Forms designer support. Do
-    /// not
-    /// change the method contents inside the source code editor. The Forms
-    /// designer
-    /// might not be able to load this method if it was changed
-    /// manually.</summary>
+    /// <summary>This method is required for Windows Forms designer
+    /// support. Do not change the method contents inside the source code
+    /// editor. The Forms designer might not be able to load this method if
+    /// it was changed manually.</summary>
     private void InitializeComponent() {
       this.text = new System.Windows.Forms.TextBox();
       this.button1 = new System.Windows.Forms.Button();
@@ -343,6 +341,7 @@ namespace Calculator {
       this.button12.TabStop = false;
       this.button12.Text = "×";
       this.button12.UseVisualStyleBackColor = true;
+      this.button12.Click += new System.EventHandler(this.button12_Click);
       this.button12.KeyDown += new
         System.Windows.Forms.KeyEventHandler(this.GeneralKeyDown);
       this.button12.KeyPress += new
@@ -592,7 +591,7 @@ namespace Calculator {
       this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
       this.Text = "Calculator";
       this.FormClosing += new
-        System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+  System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
       this.Load += new System.EventHandler(this.MainForm_Load);
       this.KeyPress += new
         System.Windows.Forms.KeyPressEventHandler(this.MainFormKeyPress);

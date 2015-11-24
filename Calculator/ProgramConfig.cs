@@ -1,54 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Text;
-
 using PeterO.Cbor;
+using System;
 
 namespace Calculator {
-    /// <summary>Holds a program's configuration data. Uses CBOR as the
-    /// serialization format.</summary>
+  /// <summary>Holds a program's configuration data. Uses CBOR as the
+  /// serialization format.</summary>
   internal class ProgramConfig {
-    private CBORObject config;
-    private string file;
-
-    /// <summary>IsolatedStream abstraction for application-specific data. Currently
-    /// this only works for .NET Framework applications.</summary>
-    private class IsolatedStream : IDisposable {
-      private IsolatedStorageFile store;
-      private Stream stream;
-
-      public IsolatedStream(string name, bool write) {
-        this.store = IsolatedStorageFile.GetStore(
-          IsolatedStorageScope.Domain | IsolatedStorageScope.User | IsolatedStorageScope.Assembly,
-          null,
-          null);
-        if (this.store.FileExists(name) || write) {
-          this.stream = new IsolatedStorageFileStream(
-            name,
-            write ? FileMode.Create : FileMode.Open);
-        }
-      }
-
-      public Stream Stream {
-        get {
- return this.stream;
-}
-      }
-
-      public void Dispose() {
-        if (this.store != null) {
- this.store.Dispose();
-}
-        if (this.stream != null) {
- this.stream.Dispose();
-}
-        this.store = null;
-        this.stream = null;
-      }
-    }
+    private readonly CBORObject config;
+    private readonly string file;
 
    public ProgramConfig(string configName) {
       this.file = configName + ".cbor";
@@ -80,8 +38,8 @@ namespace Calculator {
       if (!this.config.ContainsKey(name)) {
         return null;
       } else {
-        CBORObject value = this.config[name];
-      return (value.Type != CBORType.TextString) ? null : value.AsString();
+        var value = this.config[name];
+        return (value.Type != CBORType.TextString) ? null : value.AsString();
       }
     }
 
@@ -89,9 +47,25 @@ namespace Calculator {
       if (!this.config.ContainsKey(name)) {
         return defaultValue;
       } else {
-        int ret = 0;
+        var ret = 0;
         try {
           ret = this.config[name].AsInt32();
+        } catch (InvalidOperationException) {
+          return defaultValue;
+        } catch (OverflowException) {
+          return defaultValue;
+        }
+        return ret;
+      }
+    }
+
+    public double GetDoubleOrDefault(string name, double defaultValue) {
+      if (!this.config.ContainsKey(name)) {
+        return defaultValue;
+      } else {
+        var ret = 0.0;
+        try {
+          ret = this.config[name].AsDouble();
         } catch (InvalidOperationException) {
           return defaultValue;
         } catch (OverflowException) {

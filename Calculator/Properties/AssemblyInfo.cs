@@ -1,6 +1,5 @@
 #region Using directives
 
-using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -16,8 +15,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("Calculator")]
 [assembly:
 
-  AssemblyCopyright("Written by Peter O. in 2014. In the public domain. Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/"
-)]
+  AssemblyCopyright(
+  "Written by Peter O. in 2014. In the public domain. Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/" )]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
