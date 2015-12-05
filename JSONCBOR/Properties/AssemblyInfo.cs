@@ -10,8 +10,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("JSONCBOR")]
 [assembly:
-  AssemblyCopyright("Written by Peter O. in 2015. In the public domain. Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/"
-)]
+  AssemblyCopyright(
+  "Written by Peter O. in 2015. In the public domain. Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/" )]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

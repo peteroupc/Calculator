@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +6,8 @@ using System.IO;
 using System.IO.IsolatedStorage;
 
 namespace Calculator {
-  /// <summary>IsolatedStream abstraction for application-specific
-  /// data.</summary>
+    /// <summary>IsolatedStream abstraction for application-specific
+    /// data.</summary>
   internal class IsolatedStream : IDisposable {
     private IsolatedStorageFile store;
     private Stream stream;
@@ -42,6 +42,4 @@ namespace Calculator {
       GC.SuppressFinalize(this);
     }
   }
-
-
 }

@@ -13,8 +13,8 @@ using System.Windows;
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("WpfCalculator")]
 [assembly:
-  AssemblyCopyright("Written by Peter O. in 2015. In the public domain. Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/"
-)]
+  AssemblyCopyright(
+  "Written by Peter O. in 2015. In the public domain. Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/" )]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -35,7 +35,7 @@ using System.Windows;
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None,
-    ResourceDictionaryLocation.SourceAssembly )]
+    ResourceDictionaryLocation.SourceAssembly)]
 
 // Version information for an assembly consists of the following four values:
 //

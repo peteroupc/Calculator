@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace JSONCBOR {
-
   public partial class Form1 : Form {
     private CBORObject cborData;
     private string cborFile;

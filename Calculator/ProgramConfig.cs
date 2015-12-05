@@ -2,8 +2,8 @@ using PeterO.Cbor;
 using System;
 
 namespace Calculator {
-  /// <summary>Holds a program's configuration data. Uses CBOR as the
-  /// serialization format.</summary>
+    /// <summary>Holds a program's configuration data. Uses CBOR as the
+    /// serialization format.</summary>
   internal class ProgramConfig {
     private readonly CBORObject config;
     private readonly string file;
