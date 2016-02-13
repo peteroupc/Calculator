@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Calculator {
   internal partial class MainForm : Form
   {
-    private CalculatorController cc;
+    private readonly CalculatorController cc;
 
     public MainForm() {
       this.InitializeComponent();

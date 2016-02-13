@@ -17,7 +17,7 @@ using Calculator;
 namespace PresentationCalculator {
     /// <summary>Interaction logic for MainWindow.xaml.</summary>
   public partial class MainWindow : Window {
-    CalculatorController cc;
+    private readonly CalculatorController cc;
 
     public MainWindow() {
       InitializeComponent();

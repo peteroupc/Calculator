@@ -11,7 +11,8 @@ namespace Calculator {
     private ProgramConfig config;
 
     public void InitializeConfig() {
-      this.config = new ProgramConfig("config").FormPosFromConfig(this.iwi);
+   this.config = new
+        ProgramConfig(nameof(config)).FormPosFromConfig(this.iwi);
     }
 
     public void SaveConfig() {

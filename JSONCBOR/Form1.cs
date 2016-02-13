@@ -127,7 +127,7 @@ namespace JSONCBOR {
     }
 
     private void Form1_Load(object sender, EventArgs e) {
-      this.config = new ProgramConfig(nameof(config)).FormPosFromConfig(
+      this.config = new ProgramConfig("config").FormPosFromConfig(
         new FormWindowInfo(this));
     }
 

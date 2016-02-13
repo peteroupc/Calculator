@@ -5,6 +5,7 @@ http://creativecommons.org/publicdomain/zero/1.0/
 If you like this, you should donate to Peter O.
 at: http://upokecenter.dreamhosters.com/articles/donate-now-2/
  */
+using PeterO.Numbers;
 using System;
 using System.Text;
 
@@ -19,14 +20,14 @@ namespace PeterO.Calculator {
     }
 
     private readonly StringBuilder buffer;
-    private readonly PrecisionContext context;
+    private readonly EContext context;
 
     private readonly int maxDigits;
 
-    private ExtendedDecimal operand1;
-    private ExtendedDecimal operand2;
-    private static readonly ExtendedDecimal Percent =
-      ExtendedDecimal.FromString("0.01");
+    private EDecimal operand1;
+    private EDecimal operand2;
+    private static readonly EDecimal Percent =
+      EDecimal.FromString("0.01");
 
     private string text;
     private bool equalsPressed;
@@ -36,16 +37,16 @@ namespace PeterO.Calculator {
 
     public CalculatorState(int maxDigits) {
       this.maxDigits = maxDigits;
-      this.context = PrecisionContext
-        .ForPrecisionAndRounding(maxDigits, Rounding.HalfUp)
+      this.context = EContext
+        .ForPrecisionAndRounding(maxDigits, ERounding.HalfUp)
         .WithSimplified(true);
       this.buffer = new StringBuilder();
       this.ClearInternal();
     }
 
     private void ClearInternal() {
-      this.operand1 = ExtendedDecimal.Zero;
-      this.operand2 = ExtendedDecimal.Zero;
+      this.operand1 = EDecimal.Zero;
+      this.operand2 = EDecimal.Zero;
       this.buffer.Clear();
       this.text = "0";
       this.equalsPressed = false;
@@ -68,7 +69,7 @@ namespace PeterO.Calculator {
       }
     }
 
-    private void SetText(ExtendedDecimal dec) {
+    private void SetText(EDecimal dec) {
       this.text = dec.IsNaN() ? "Error" : dec.ToString();
     }
 
@@ -176,7 +177,7 @@ namespace PeterO.Calculator {
       return true;
     }
 
-    private ExtendedDecimal DoOperation() {
+    private EDecimal DoOperation() {
       if (this.currentOperation == Operation.Add) {
         return this.operand1.Add(this.operand2, this.context);
       }
@@ -206,7 +207,7 @@ namespace PeterO.Calculator {
         }
       }
       if (this.currentOperand == 1) {
-        this.operand2 = ExtendedDecimal.FromString(this.text, this.context);
+        this.operand2 = EDecimal.FromString(this.text, this.context);
         this.buffer.Clear();
         this.operand1 = this.DoOperation();
         this.SetText(this.operand1);
@@ -221,8 +222,8 @@ namespace PeterO.Calculator {
       if (IsError(this.text)) {
         return false;
       }
-      var op = ExtendedDecimal.FromString(this.text, this.context);
-      op = op.SquareRoot(this.context);
+      var op = EDecimal.FromString(this.text, this.context);
+      op = op.Sqrt(this.context);
       if (this.currentOperand == 0) {
         this.operand1 = op;
       } else {
@@ -239,7 +240,7 @@ namespace PeterO.Calculator {
         return false;
       }
       if (this.currentOperand == 0) {
-        this.operand1 = ExtendedDecimal.FromString(this.text, this.context);
+        this.operand1 = EDecimal.FromString(this.text, this.context);
         this.operand1 = this.operand1.Multiply(Percent, this.context);
         this.SetText(this.operand1);
         this.buffer.Clear();
@@ -247,7 +248,7 @@ namespace PeterO.Calculator {
           this.buffer.Append(this.buffer.ToString());
         }
       } else {
-        this.operand2 = ExtendedDecimal.FromString(this.text, this.context);
+        this.operand2 = EDecimal.FromString(this.text, this.context);
         this.operand2 = this.operand2.Multiply(Percent, this.context);
         this.SetText(this.operand2);
         this.buffer.Clear();
@@ -263,7 +264,7 @@ namespace PeterO.Calculator {
       if (this.currentOperand == 0) {
         // Store first operand
         this.currentOperand = 1;
-        this.operand1 = ExtendedDecimal.FromString(this.text, this.context);
+        this.operand1 = EDecimal.FromString(this.text, this.context);
         this.operand2 = this.operand1;
         this.buffer.Clear();
         this.currentOperation = op;
