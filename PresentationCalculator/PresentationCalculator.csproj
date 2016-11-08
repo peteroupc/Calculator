@@ -36,11 +36,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CBOR, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PeterO.Cbor.2.4.0\lib\portable-net45+dnxcore50+netcore45+win+wpa81+wp80\CBOR.dll</HintPath>
+      <HintPath>..\packages\PeterO.Cbor.2.4.0\lib\portable-net45+dnxcore50+netcore45+win+wpa81+wp8\CBOR.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Numbers, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PeterO.Numbers.0.2.0\lib\portable-net45+dnxcore50+netcore45+win+wpa81+wp80\Numbers.dll</HintPath>
+      <HintPath>..\packages\PeterO.Numbers.0.2.0\lib\portable-net45+dnxcore50+netcore45+win+wpa81+wp8\Numbers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

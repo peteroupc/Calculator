@@ -14,7 +14,7 @@ using System.Windows;
 [assembly: AssemblyProduct("WpfCalculator")]
 [assembly:
   AssemblyCopyright(
-  "Written by Peter O. in 2015. In the public domain. Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/" )]
+  "Written by Peter O. in 2015. In the public domain. Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,7 +31,7 @@ using System.Windows;
 //the line below to match the UICulture setting in the project file.
 
 //[assembly: NeutralResourcesLanguage("en-US",
-// UltimateResourceFallbackLocation.Satellite)]
+  // UltimateResourceFallbackLocation.Satellite)]
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None,

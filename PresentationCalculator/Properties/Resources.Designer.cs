@@ -20,7 +20,7 @@ namespace PresentationCalculator.Properties {
 
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder"
     ,
-"4.0.0.0")]
+  "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -30,7 +30,7 @@ namespace PresentationCalculator.Properties {
 
   [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance"
     ,
-"CA1811:AvoidUncalledPrivateCode")] internal Resources() {
+  "CA1811:AvoidUncalledPrivateCode")] internal Resources() {
         }
 
     /// <summary>Returns the cached ResourceManager instance used by this
@@ -44,7 +44,7 @@ namespace PresentationCalculator.Properties {
 
   global::System.Resources.ResourceManager("PresentationCalculator.Properties.Resources"
     ,
-typeof(Resources).Assembly);
+  typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
