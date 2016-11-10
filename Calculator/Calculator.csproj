@@ -73,5 +73,5 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!--<Import Project="$(MSBuildExtensionsPath)StyleCop4.7StyleCop.targets" />-->
+  <!--<Import Project="$(MSBuildExtensionsPath)StyleCop4.7StyleCop.targets" />-->
 </Project>
