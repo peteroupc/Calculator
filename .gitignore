@@ -6,6 +6,7 @@
 *.exe
 *.jar
 *.log
+*.map
 *.nupkg
 *.sdsettings
 *.shf*
@@ -14,6 +15,7 @@
 *.userprefs
 *.versionsBackup
 .classpath
+.nuget/
 .pmd
 .project
 .settings/
