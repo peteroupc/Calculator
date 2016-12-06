@@ -1,5 +1,5 @@
-using PeterO.Cbor;
 using System;
+using PeterO.Cbor;
 
 namespace Calculator {
     /// <summary>Holds a program's configuration data. Uses CBOR as the
