@@ -1,8 +1,8 @@
-using Calculator;
-using PeterO.Cbor;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using Calculator;
+using PeterO.Cbor;
 
 namespace JSONCBOR {
   public partial class Form1 : Form {

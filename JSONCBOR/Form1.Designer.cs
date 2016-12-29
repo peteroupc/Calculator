@@ -1,5 +1,5 @@
 namespace JSONCBOR {
-/// </summary>
+/// <summary>Form 1.</summary>
 public partial class Form1 {
     /// <summary>Required designer variable.</summary>
     private System.ComponentModel.IContainer components = null;
