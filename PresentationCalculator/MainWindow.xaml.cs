@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PeterO.Calculator;
 using Calculator;
+using PeterO.Calculator;
 namespace PresentationCalculator {
     /// <summary>Interaction logic for MainWindow.xaml.</summary>
   public partial class MainWindow : Window {

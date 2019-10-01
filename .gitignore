@@ -1,6 +1,7 @@
 *.Cache
 *.Settings
 *.bat
+*.cache
 *.class
 *.dll
 *.exe
@@ -8,8 +9,10 @@
 *.log
 *.map
 *.nupkg
+*.pyc
 *.sdsettings
 *.shf*
+*.snk
 *.suo
 *.user
 *.userprefs
@@ -29,6 +32,7 @@ ProfilingSessions/
 TestResults/
 bin/
 encoding/
+encodingfldr/
 js/*.ht*
 js/DecTest.*
 obj/

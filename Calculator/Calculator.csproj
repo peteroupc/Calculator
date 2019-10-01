@@ -1,74 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+<?xml version='1.0' encoding='UTF-8'?>
+<Project DefaultTargets='Build' ToolsVersion='4.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
   <PropertyGroup>
     <ProjectGuid>{ED7BAEF0-07B9-4DF9-8FCC-42C17958D5C6}</ProjectGuid>
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Configuration Condition=' &apos;$(Configuration)&apos; == &apos;&apos; '>Debug</Configuration>
+    <Platform Condition=' &apos;$(Platform)&apos; == &apos;&apos; '>AnyCPU</Platform>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Calculator</RootNamespace>
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+<RootNamespace>Calculator</RootNamespace>
     <AssemblyName>Calculator</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
+  <PropertyGroup Condition=' &apos;$(Platform)&apos; == &apos;AnyCPU&apos; '>
     <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
+  <PropertyGroup Condition=' &apos;$(Configuration)&apos; == &apos;Debug&apos; '>
     <OutputPath>bin\Debug\</OutputPath>
     <DebugSymbols>True</DebugSymbols>
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
+  <PropertyGroup Condition=' &apos;$(Configuration)&apos; == &apos;Release&apos; '>
     <OutputPath>bin\Release\</OutputPath>
     <DebugSymbols>False</DebugSymbols>
     <DebugType>None</DebugType>
     <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
-  </PropertyGroup>
+  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core">
+    <Reference Include='System'/>
+    <Reference Include='System.Core'>
     </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="Numbers">
-      <HintPath>..\packages\PeterO.Numbers.0.3.0\lib\portable-net40+sl5+win+wpa81+wp80\Numbers.dll</HintPath>
+    <Reference Include='System.Drawing'/>
+    <Reference Include='System.Windows.Forms'/>
+    <Reference Include='Numbers'>
+      <HintPath>..\packages\PeterO.Numbers.1.4.1\lib\net40\Numbers.dll</HintPath>
     </Reference>
-    <Reference Include="CBOR">
-      <HintPath>..\packages\PeterO.Cbor.2.4.2\lib\portable-net40+sl50+win+wpa81+wp80\CBOR.dll</HintPath>
+    <Reference Include='CBOR'>
+      <HintPath>..\packages\PeterO.Cbor.3.5.0\lib\net40\CBOR.dll</HintPath>
     </Reference>
-  </ItemGroup>
+  <AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='StyleCop.Analyzers'><Version>1.1.118</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.FxCopAnalyzers'><Version>2.9.4</Version></PackageReference></ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculatorController.cs" />
-    <Compile Include="CalculatorState.cs" />
-    <Compile Include="FormConfig.cs" />
-    <Compile Include="FormWindowInfo.cs" />
-    <Compile Include="IsolatedStreamForms.cs" />
-    <Compile Include="IWindowInfo.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include='CalculatorController.cs'/>
+    <Compile Include='CalculatorState.cs'/>
+    <Compile Include='FormConfig.cs'/>
+    <Compile Include='FormWindowInfo.cs'/>
+    <Compile Include='IsolatedStreamForms.cs'/>
+    <Compile Include='IWindowInfo.cs'/>
+    <Compile Include='MainForm.cs'>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include='MainForm.Designer.cs'>
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="ProgramConfig.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include='Program.cs'/>
+    <Compile Include='ProgramConfig.cs'/>
+    <Compile Include='Properties\AssemblyInfo.cs'/>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include='MainForm.resx'>
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
+    <LogicalName>Resources.resources</LogicalName></EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project='$(MSBuildToolsPath)\Microsoft.CSharp.targets'/>
   <!--<Import Project="$(MSBuildExtensionsPath)StyleCop4.7StyleCop.targets" />-->
-</Project>
+   </Project>

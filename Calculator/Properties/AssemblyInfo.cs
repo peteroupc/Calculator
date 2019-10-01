@@ -13,10 +13,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Calculator")]
-[assembly:
-
-  AssemblyCopyright(
-  "Written by Peter O. in 2014. In the public domain. Public domain dedication: http://creativecommons.org/publicdomain/zero/1.0/")]
+[assembly: AssemblyCopyright(
+  "Written by Peter O. in 2014. In the public domain. Public domain" +
+"\u0020dedication: http://creativecommons.org/publicdomain/zero/1.0/")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

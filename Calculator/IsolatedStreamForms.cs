@@ -14,9 +14,9 @@ namespace Calculator {
 
     public IsolatedStream(string name, bool write) {
       this.store = IsolatedStorageFile.GetStore(
-                IsolatedStorageScope.Domain | IsolatedStorageScope.User | IsolatedStorageScope.Assembly,
-                null,
-                null);
+        IsolatedStorageScope.Domain | IsolatedStorageScope.User | IsolatedStorageScope.Assembly,
+        null,
+        null);
       if (this.store.FileExists(name) || write) {
         this.stream = new IsolatedStorageFileStream(
           name,

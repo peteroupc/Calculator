@@ -91,8 +91,8 @@ namespace Calculator {
     }
 
     internal void MainFormKeyPress(
-  object sender,
-  KeyPressEventArgs e) {
+      object sender,
+      KeyPressEventArgs e) {
       e.Handled |= this.cc.KeyPress(e.KeyChar);
     }
 

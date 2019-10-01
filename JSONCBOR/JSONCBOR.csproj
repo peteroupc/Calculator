@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<?xml version='1.0' encoding='UTF-8'?>
+<Project DefaultTargets='Build' ToolsVersion='12.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+  <Import Condition='Exists(&apos;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&apos;)' Project='$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props'/>
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Configuration Condition=' &apos;$(Configuration)&apos; == &apos;&apos; '>Debug</Configuration>
+    <Platform Condition=' &apos;$(Platform)&apos; == &apos;&apos; '>AnyCPU</Platform>
     <ProjectGuid>{3639F15F-C140-4B29-9FB0-1C39278BBE51}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JSONCBOR</RootNamespace>
+    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
+<RootNamespace>JSONCBOR</RootNamespace>
     <AssemblyName>JSONCBOR</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
+  <PropertyGroup Condition=' &apos;$(Configuration)|$(Platform)&apos; == &apos;Debug|AnyCPU&apos; '>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -21,8 +22,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
+  <PropertyGroup Condition=' &apos;$(Configuration)|$(Platform)&apos; == &apos;Release|AnyCPU&apos; '>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -30,64 +31,64 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Numbers">
-      <HintPath>..\packages\PeterO.Numbers.0.3.0\lib\portable-net45+dnxcore50+netcore45+win+wpa81+wp80\Numbers.dll</HintPath>
+    <Reference Include='System'/>
+    <Reference Include='System.Core'/>
+    <Reference Include='System.Xml.Linq'/>
+    <Reference Include='System.Data.DataSetExtensions'/>
+    <Reference Include='Microsoft.CSharp'/>
+    <Reference Include='System.Data'/>
+    <Reference Include='System.Deployment'/>
+    <Reference Include='System.Drawing'/>
+    <Reference Include='System.Windows.Forms'/>
+    <Reference Include='System.Xml'/>
+    <Reference Include='Numbers'>
+      <HintPath>..\packages\PeterO.Numbers.1.4.1\lib\net40\Numbers.dll</HintPath>
     </Reference>
-    <Reference Include="CBOR">
-      <HintPath>..\packages\PeterO.Cbor.2.4.2\lib\portable-net45+dnxcore50+netcore45+win+wpa81+wp80\CBOR.dll</HintPath>
+    <Reference Include='CBOR'>
+      <HintPath>..\packages\PeterO.Cbor.3.5.0\lib\net40\CBOR.dll</HintPath>
     </Reference>
-  </ItemGroup>
+  <AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='StyleCop.Analyzers'><Version>1.1.118</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.FxCopAnalyzers'><Version>2.9.4</Version></PackageReference></ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Calculator\FormConfig.cs">
+    <Compile Include='..\Calculator\FormConfig.cs'>
       <Link>FormConfig.cs</Link>
     </Compile>
-    <Compile Include="..\Calculator\FormWindowInfo.cs">
+    <Compile Include='..\Calculator\FormWindowInfo.cs'>
       <Link>FormWindowInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Calculator\IsolatedStreamForms.cs">
+    <Compile Include='..\Calculator\IsolatedStreamForms.cs'>
       <Link>IsolatedStreamForms.cs</Link>
     </Compile>
-    <Compile Include="..\Calculator\IWindowInfo.cs">
+    <Compile Include='..\Calculator\IWindowInfo.cs'>
       <Link>IWindowInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Calculator\ProgramConfig.cs">
+    <Compile Include='..\Calculator\ProgramConfig.cs'>
       <Link>ProgramConfig.cs</Link>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include='Form1.cs'>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include='Form1.Designer.cs'>
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Properties\Settings.settings">
+    <Compile Include='Program.cs'/>
+    <Compile Include='Properties\AssemblyInfo.cs'/>
+    <None Include='Properties\Settings.settings'>
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Include='Properties\Settings.Designer.cs'>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="packages.config" />
+
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project='$(MSBuildToolsPath)\Microsoft.CSharp.targets'/>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -96,4 +97,4 @@
   </Target>
   -->
   <!--<Import Project="$(MSBuildExtensionsPath)StyleCop4.7StyleCop.targets" />-->
-</Project>
+   </Project>
