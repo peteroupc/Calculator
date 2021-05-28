@@ -43,7 +43,7 @@
     <Reference Include='CBOR'>
       <HintPath>..\packages\PeterO.Cbor.3.5.0\lib\net40\CBOR.dll</HintPath>
     </Reference>
-  <AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='StyleCop.Analyzers'><Version>1.1.118</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.FxCopAnalyzers'><Version>2.9.4</Version></PackageReference></ItemGroup>
+  <AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='StyleCop.Analyzers'><Version>1.1.118</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers'><Version>5.0.3</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers'><Version>5.0.3</Version></PackageReference></ItemGroup>
   <ItemGroup>
     <Compile Include='CalculatorController.cs'/>
     <Compile Include='CalculatorState.cs'/>

@@ -2,11 +2,11 @@ using System;
 using System.Windows.Forms;
 
 namespace Calculator {
-    /// <summary>Windows Forms implementation of IWindowInfo.</summary>
+  /// <summary>Windows Forms implementation of IWindowInfo.</summary>
   internal class FormWindowInfo : IWindowInfo {
     private readonly Form form;
 
-    public FormWindowInfo(Form form) {
+    public FormWindowInfo (Form form) {
       this.form = form;
     }
 
@@ -16,7 +16,7 @@ namespace Calculator {
       }
 
       set {
-        this.form.Height = (int)Math.Round(value);
+        this.form.Height = (int)Math.Round (value);
       }
     }
 
@@ -26,7 +26,7 @@ namespace Calculator {
       }
 
       set {
-        this.form.Left = (int)Math.Round(value);
+        this.form.Left = (int)Math.Round (value);
       }
     }
 
@@ -36,7 +36,7 @@ namespace Calculator {
       }
 
       set {
-        this.form.Width = (int)Math.Round(value);
+        this.form.Width = (int)Math.Round (value);
       }
     }
 
@@ -46,11 +46,11 @@ namespace Calculator {
       }
 
       set {
-        this.form.Top = (int)Math.Round(value);
+        this.form.Top = (int)Math.Round (value);
       }
     }
 
-    public void SetTextBox(string str) {
+    public void SetTextBox (string str) {
       this.form.Controls["text"].Text = str;
     }
 

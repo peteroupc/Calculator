@@ -12,7 +12,6 @@
 *.pyc
 *.sdsettings
 *.shf*
-*.snk
 *.suo
 *.user
 *.userprefs

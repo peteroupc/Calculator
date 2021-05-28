@@ -9,24 +9,26 @@
 //------------------------------------------------------------------------------
 
 namespace PresentationCalculator.Properties {
-    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
 
-  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator",
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute
 
-  "14.0.0.0")]
-    internal sealed partial class Settings :
-      global::System.Configuration.ApplicationSettingsBase {
-        private static Settings defaultInstance =
+  ("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator",
 
-  ((
-    Settings)(
-    global::System.Configuration.ApplicationSettingsBase.Synchronized(new
-          Settings())));
+      "14.0.0.0")]
+  internal sealed partial class Settings :
+    global::System.Configuration.ApplicationSettingsBase {
+    private static Settings defaultInstance =
 
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
+      ((
+          Settings) (
+          global::System.Configuration.ApplicationSettingsBase.Synchronized (new
+            Settings())));
+
+    public static Settings Default {
+      get {
+        return defaultInstance;
+      }
     }
+  }
 }

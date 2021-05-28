@@ -6,10 +6,10 @@ using System.Windows;
 using System.Windows.Controls;
 
 namespace Calculator {
-    /// <summary>WPF implementation of IWindowInfo.</summary>
+  /// <summary>WPF implementation of IWindowInfo.</summary>
   class WpfWindowInfo : IWindowInfo {
     private readonly Window form;
-    public WpfWindowInfo(Window form) {
+    public WpfWindowInfo (Window form) {
       this.form = form;
     }
     public double Height {
@@ -52,8 +52,8 @@ namespace Calculator {
       }
     }
 
-    public void SetTextBox(string str) {
-      var tb = (TextBlock)form.FindName("text");
+    public void SetTextBox (string str) {
+      var tb = (TextBlock)form.FindName ("text");
       tb.Text = str;
     }
 

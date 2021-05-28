@@ -1,17 +1,17 @@
 namespace JSONCBOR {
-/// <summary>Form 1.</summary>
-public partial class Form1 {
+  /// <summary>Form 1.</summary>
+  public partial class Form1 {
     /// <summary>Required designer variable.</summary>
     private System.ComponentModel.IContainer components = null;
 
     /// <summary>Clean up any resources being used.</summary>
     /// <param name='disposing'>True if managed resources should be
     /// disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing) {
+    protected override void Dispose (bool disposing) {
       if (disposing && (this.components != null)) {
         this.components.Dispose();
       }
-      base.Dispose(disposing);
+      base.Dispose (disposing);
     }
 
     #region Windows Form Designer generated code
@@ -99,7 +99,8 @@ public partial class Form1 {
       this.convertToJson.TabIndex = 6;
       this.convertToJson.Text = "Convert to JSON...";
       this.convertToJson.UseVisualStyleBackColor = true;
- this.convertToJson.Click += new System.EventHandler(this.convertToJson_Click);
+      this.convertToJson.Click += new System.EventHandler(
+          this.convertToJson_Click);
       //
       // convertToCbor
       //
@@ -111,28 +112,29 @@ public partial class Form1 {
       this.convertToCbor.TabIndex = 7;
       this.convertToCbor.Text = "Convert to CBOR...";
       this.convertToCbor.UseVisualStyleBackColor = true;
- this.convertToCbor.Click += new System.EventHandler(this.convertToCbor_Click);
+      this.convertToCbor.Click += new System.EventHandler(
+          this.convertToCbor_Click);
       //
       // Form1
       //
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(386, 215);
-      this.Controls.Add(this.convertToCbor);
-      this.Controls.Add(this.convertToJson);
-      this.Controls.Add(this.cborLabel);
-      this.Controls.Add(this.button2);
-      this.Controls.Add(this.label3);
-      this.Controls.Add(this.jsonLabel);
-      this.Controls.Add(this.label1);
-      this.Controls.Add(this.button1);
+      this.Controls.Add (this.convertToCbor);
+      this.Controls.Add (this.convertToJson);
+      this.Controls.Add (this.cborLabel);
+      this.Controls.Add (this.button2);
+      this.Controls.Add (this.label3);
+      this.Controls.Add (this.jsonLabel);
+      this.Controls.Add (this.label1);
+      this.Controls.Add (this.button1);
       this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
       this.Name = "Form1";
       this.Text = "JSON/CBOR Converter";
       this.FormClosing += new
-        System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
       this.Load += new System.EventHandler(this.Form1_Load);
-      this.ResumeLayout(false);
+      this.ResumeLayout (false);
       this.PerformLayout();
     }
 

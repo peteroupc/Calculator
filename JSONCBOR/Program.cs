@@ -7,9 +7,9 @@ namespace JSONCBOR {
     [STAThread]
     internal static void Main() {
       Application.EnableVisualStyles();
-      Application.SetCompatibleTextRenderingDefault(false);
+      Application.SetCompatibleTextRenderingDefault (false);
       using (var form1 = new Form1()) {
-        Application.Run(form1);
+        Application.Run (form1);
       }
     }
   }

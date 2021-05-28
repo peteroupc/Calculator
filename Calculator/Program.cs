@@ -1,23 +1,24 @@
 /*
-Written by Peter O. in 2014.
-Any copyright is dedicated to the Public Domain.
+Written by Peter O.
+Any copyright to this work is released to the Public Domain.
+In case this is not possible, this work is also
+licensed under Creative Commons Zero (CC0):
 http://creativecommons.org/publicdomain/zero/1.0/
-If you like this, you should donate to Peter O.
-at: http://peteroupc.github.io/
+
  */
 using System;
 using System.Windows.Forms;
 
 namespace Calculator {
-    /// <summary>Class with program entry point.</summary>
+  /// <summary>Class with program entry point.</summary>
   internal sealed class Program {
     /// <summary>Program entry point.</summary>
     [STAThread]
     private static void Main() {
       Application.EnableVisualStyles();
-      Application.SetCompatibleTextRenderingDefault(false);
+      Application.SetCompatibleTextRenderingDefault (false);
       using (var mainForm = new MainForm()) {
-        Application.Run(mainForm);
+        Application.Run (mainForm);
       }
     }
   }
