@@ -3,8 +3,6 @@ Calculator
 
 **Download source code: [ZIP file](https://github.com/peteroupc/Calculator/archive/master.zip)**
 
-If you like this software, consider donating to me at this link: [http://peteroupc.github.io/](http://peteroupc.github.io/)
-
 ----
 
 ![Calculator](calc.png)  ![WPF Calculator](wpfcalc.png)
@@ -39,7 +37,4 @@ Written by Peter O.
 Any copyright to this work is released to the Public Domain.
 In case this is not possible, this work is also
 licensed under Creative Commons Zero (CC0):
-[http://creativecommons.org/publicdomain/zero/1.0/](http://creativecommons.org/publicdomain/zero/1.0/)
-
-If you like this, you should donate to Peter O.
-at: [http://peteroupc.github.io/](http://peteroupc.github.io/)
+[https://creativecommons.org/publicdomain/zero/1.0/](https://creativecommons.org/publicdomain/zero/1.0/)

@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct ("Calculator")]
 [assembly: AssemblyCopyright(
     "Written by Peter O. In the public domain. Public domain" +
-    "\u0020dedication: http://creativecommons.org/publicdomain/zero/1.0/")]
+    "\u0020dedication: https://creativecommons.org/publicdomain/zero/1.0/")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 
