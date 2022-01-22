@@ -41,7 +41,7 @@
       <HintPath>..\packages\PeterO.Numbers.1.4.1\lib\net40\Numbers.dll</HintPath>
     </Reference>
     <Reference Include='CBOR'>
-      <HintPath>..\packages\PeterO.Cbor.3.5.0\lib\net40\CBOR.dll</HintPath>
+      <HintPath>..\packages\PeterO.Cbor.4.5.2\lib\net40\CBOR.dll</HintPath>
     </Reference>
   <AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='StyleCop.Analyzers'><Version>1.1.118</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers'><Version>5.0.3</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers'><Version>5.0.3</Version></PackageReference></ItemGroup>
   <ItemGroup>
