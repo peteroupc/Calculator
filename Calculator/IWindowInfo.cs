@@ -20,7 +20,7 @@ namespace Calculator {
       set;
     }
 
-    void SetTextBox (string str);
+    void SetTextBox(string str);
 
     void ErrorSound();
   }

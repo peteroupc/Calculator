@@ -57,7 +57,7 @@
     <Reference Include='WindowsBase'/>
     <Reference Include='PresentationCore'/>
     <Reference Include='PresentationFramework'/>
-  <AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='StyleCop.Analyzers'><Version>1.1.118</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers'><Version>5.0.3</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers'><Version>5.0.3</Version></PackageReference></ItemGroup>
+  <AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='StyleCop.Analyzers'><Version>1.1.118</Version></PackageReference></ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include='App.xaml'>
       <Generator>MSBuild:Compile</Generator>

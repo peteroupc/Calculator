@@ -28,5 +28,5 @@ using System.Runtime.InteropServices;
 // Major.Minor.Build.Revision
 //
 // You can specify all the values or you can use the default the Revision and
-// Build Numbers by using the '*' as shown below:
+// Build Numbers by using the '*' as shown next:
 [assembly: AssemblyVersion ("1.0.*")]

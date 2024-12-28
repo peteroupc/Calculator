@@ -149,10 +149,10 @@ exist or if the existing value has the wrong type or can't be converted.)
 To be more specific, the calculator demo uses the following keys
 in the `ProgramConfig` map:
 
-* `"x"` - X coordinate of the calculator window's top-left corner.
-* `"y"` - Y coordinate of the window's top-left corner.
-* `"width"` - Width, in pixels, of the window's top-left corner.
-* `"height"` - Height, in pixels, of the window's top-left corner.
+* `"x"` - x-coordinate of the calculator window's upper-left corner.
+* `"y"` - y-coordinate of the window's upper-left corner.
+* `"width"` - Width, in pixels, of the window's upper-left corner.
+* `"height"` - Height, in pixels, of the window's upper-left corner.
 
 There are currently only three kinds of data that `ProgramConfig` can "get":
 strings, `double`s, and 32-bit unsigned integers (`int`s).  This is often adequate

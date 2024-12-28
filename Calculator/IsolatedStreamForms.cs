@@ -12,12 +12,12 @@ namespace Calculator {
     private IsolatedStorageFile store;
     private Stream stream;
 
-    public IsolatedStream (string name, bool write) {
+    public IsolatedStream(string name, bool write) {
       this.store = IsolatedStorageFile.GetStore(
         IsolatedStorageScope.Domain | IsolatedStorageScope.User | IsolatedStorageScope.Assembly,
         null,
         null);
-      if (this.store.FileExists (name) || write) {
+      if (this.store.FileExists(name) || write) {
         this.stream = new IsolatedStorageFileStream(
           name,
           write ? FileMode.Create : FileMode.Open);
@@ -39,7 +39,7 @@ namespace Calculator {
       }
       this.store = null;
       this.stream = null;
-      GC.SuppressFinalize (this);
+      GC.SuppressFinalize(this);
     }
   }
 }

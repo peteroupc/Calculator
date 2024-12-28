@@ -1,74 +1,20 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<Project DefaultTargets='Build' ToolsVersion='4.0' xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+<Project Sdk='Microsoft.NET.Sdk'>
   <PropertyGroup>
-    <ProjectGuid>{ED7BAEF0-07B9-4DF9-8FCC-42C17958D5C6}</ProjectGuid>
-    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <Configuration Condition=' &apos;$(Configuration)&apos; == &apos;&apos; '>Debug</Configuration>
-    <Platform Condition=' &apos;$(Platform)&apos; == &apos;&apos; '>AnyCPU</Platform>
-    <OutputType>WinExe</OutputType>
-    <AutoGenerateBindingRedirects>True</AutoGenerateBindingRedirects>
-<RootNamespace>Calculator</RootNamespace>
-    <AssemblyName>Calculator</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
-  <PropertyGroup Condition=' &apos;$(Platform)&apos; == &apos;AnyCPU&apos; '>
-    <PlatformTarget>x86</PlatformTarget>
-  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
-  <PropertyGroup Condition=' &apos;$(Configuration)&apos; == &apos;Debug&apos; '>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>Full</DebugType>
-    <Optimize>False</Optimize>
-    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
-  <PropertyGroup Condition=' &apos;$(Configuration)&apos; == &apos;Release&apos; '>
-    <OutputPath>bin\Release\</OutputPath>
-    <DebugSymbols>False</DebugSymbols>
-    <DebugType>None</DebugType>
-    <Optimize>True</Optimize>
-    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-    <DefineConstants>TRACE</DefineConstants>
-  <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Copyright>Written by Peter O.  Any copyright to this work is released to the Public Domain.  In case this is not possible, this work is also licensed under the Unlicense.</Copyright>
+  </PropertyGroup>
+  <PropertyGroup Condition=' &apos;$(Configuration)&apos;==&apos;Debug&apos; '>
+    <DebugType>full</DebugType>
+    <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
+  <PropertyGroup Condition=' &apos;$(Configuration)&apos;==&apos;Release&apos; '>
+    <DebugType>none</DebugType>
+    <CodeAnalysisRuleSet>rules.ruleset</CodeAnalysisRuleSet></PropertyGroup>
   <ItemGroup>
-    <Reference Include='System'/>
-    <Reference Include='System.Core'>
-    </Reference>
-    <Reference Include='System.Drawing'/>
-    <Reference Include='System.Windows.Forms'/>
-    <Reference Include='Numbers'>
-      <HintPath>..\packages\PeterO.Numbers.1.4.1\lib\net40\Numbers.dll</HintPath>
-    </Reference>
-    <Reference Include='CBOR'>
-      <HintPath>..\packages\PeterO.Cbor.4.5.2\lib\net40\CBOR.dll</HintPath>
-    </Reference>
-  <AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/><PackageReference Include='StyleCop.Analyzers'><Version>1.1.118</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers'><Version>5.0.3</Version></PackageReference><PackageReference Include='Microsoft.CodeAnalysis.NetAnalyzers'><Version>5.0.3</Version></PackageReference></ItemGroup>
-  <ItemGroup>
-    <Compile Include='CalculatorController.cs'/>
-    <Compile Include='CalculatorState.cs'/>
-    <Compile Include='FormConfig.cs'/>
-    <Compile Include='FormWindowInfo.cs'/>
-    <Compile Include='IsolatedStreamForms.cs'/>
-    <Compile Include='IWindowInfo.cs'/>
-    <Compile Include='MainForm.cs'>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include='MainForm.Designer.cs'>
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include='Program.cs'/>
-    <Compile Include='ProgramConfig.cs'/>
-    <Compile Include='Properties\AssemblyInfo.cs'/>
-  </ItemGroup>
-  <ItemGroup>
-
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include='MainForm.resx'>
-      <DependentUpon>MainForm.cs</DependentUpon>
-    <LogicalName>Resources.resources</LogicalName></EmbeddedResource>
-  </ItemGroup>
-  <Import Project='$(MSBuildToolsPath)\Microsoft.CSharp.targets'/>
-  <!--<Import Project="$(MSBuildExtensionsPath)StyleCop4.7StyleCop.targets" />-->
+  <AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/></ItemGroup>
+      <ItemGroup>
+        <PackageReference Include='System.Windows.Forms'/>
+        <PackageReference Include='PeterO.Cbor' Version='4.5.2'/>
+        <PackageReference Include='PeterO.Numbers' Version='1.8.2'/>
+        <PackageReference Include='StyleCop.Analyzers' PrivateAssets='All' Version='1.2.0-beta.354'/>
+      </ItemGroup>
    </Project>
