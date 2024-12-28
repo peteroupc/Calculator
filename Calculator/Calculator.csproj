@@ -1,5 +1,6 @@
 <Project Sdk='Microsoft.NET.Sdk'>
   <PropertyGroup>
+   <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <Copyright>Written by Peter O.  Any copyright to this work is released to the Public Domain.  In case this is not possible, this work is also licensed under the Unlicense.</Copyright>
   </PropertyGroup>
@@ -12,7 +13,11 @@
   <ItemGroup>
   <AdditionalFiles Include='stylecop.json'/><AdditionalFiles Include='rules.ruleset'/></ItemGroup>
       <ItemGroup>
-        <PackageReference Include='System.Windows.Forms'/>
+      </ItemGroup>
+      <ItemGroup>
+      <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
+        <PackageReference Include='System.Windows.Forms' Version='4.0.0'/>
+        <PackageReference Include='System.Windows.Extensions' Version='4.6.0'/>
         <PackageReference Include='PeterO.Cbor' Version='4.5.2'/>
         <PackageReference Include='PeterO.Numbers' Version='1.8.2'/>
         <PackageReference Include='StyleCop.Analyzers' PrivateAssets='All' Version='1.2.0-beta.354'/>

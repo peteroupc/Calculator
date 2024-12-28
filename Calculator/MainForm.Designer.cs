@@ -354,7 +354,6 @@ System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
       this.button12.TabStop = false;
       this.button12.Text = "×";
       this.button12.UseVisualStyleBackColor = true;
-      this.button12.Click += new System.EventHandler(this.button12_Click);
       this.button12.KeyDown += new
 System.Windows.Forms.KeyEventHandler(this.GeneralKeyDown);
       this.button12.KeyPress += new
@@ -523,7 +522,6 @@ System.Windows.Forms.PreviewKeyDownEventHandler(this.EnterBehavior);
       this.button19.TabStop = false;
       this.button19.Text = "√";
       this.button19.UseVisualStyleBackColor = true;
-      this.button19.Click += new System.EventHandler(this.button19_Click);
       this.button19.KeyDown += new
 System.Windows.Forms.KeyEventHandler(this.GeneralKeyDown);
       this.button19.KeyPress += new

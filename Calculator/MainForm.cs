@@ -76,6 +76,9 @@ namespace Calculator {
     internal void Button12Click(object sender, MouseEventArgs e) {
       this.cc.MultiplyButton();
     }
+    internal void Button12_Click(object sender, EventArgs e) {
+      this.Button12Click(sender, (MouseEventArgs)e);
+    }
 
     internal void Button16Click(object sender, MouseEventArgs e) {
       this.cc.DivideButton();
@@ -94,8 +97,11 @@ namespace Calculator {
       KeyPressEventArgs e) {
       e.Handled |= this.cc.KeyPress(e.KeyChar);
     }
-
     internal void Button19Click(object sender, EventArgs e) {
+      this.cc.SquareRootButton();
+    }
+
+    internal void Button19_Click(object sender, EventArgs e) {
       this.cc.SquareRootButton();
     }
 
